@@ -9,3 +9,7 @@
 [node name="Sprite2D" type="Sprite2D" parent="Stage"]
 position = Vector2(521, 307)
 texture = ExtResource("1_ahneh")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Stage"]
+position = Vector2(132, 380)
+texture = ExtResource("1_ahneh")
