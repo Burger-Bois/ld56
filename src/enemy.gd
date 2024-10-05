@@ -13,7 +13,6 @@ func _physics_process(delta: float) -> void:
 
 
 func hit():
-	print("ouchy, I've been hit: " + name)
 	queue_free()
 
 

@@ -60,7 +60,5 @@ func remove_damage_box_enemy(node: Node2D):
 
 
 func stomp():
-	print("stomping")
 	for enemy in _damage_box_enemies:
-		print("stomping: " + enemy.name)
 		enemy.hit()
