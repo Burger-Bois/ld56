@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh1nosmui2c64"]
+[gd_scene load_steps=5 format=3 uid="uid://m1xvrwl11lw0"]
 
-[ext_resource type="Script" path="res://src/linear_enemy.gd" id="1_wgipb"]
-[ext_resource type="Texture2D" uid="uid://ddnircrexhpep" path="res://icon.svg" id="2_ooga6"]
+[ext_resource type="Script" path="res://src/random_enemy.gd" id="1_op4y0"]
+[ext_resource type="Texture2D" uid="uid://ddnircrexhpep" path="res://icon.svg" id="2_2wufi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbvrk"]
 size = Vector2(32, 32)
@@ -9,16 +9,17 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s66oi"]
 size = Vector2(32, 32)
 
-[node name="LinearEnemy" type="CharacterBody2D"]
+[node name="RandomEnemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
 motion_mode = 1
-script = ExtResource("1_wgipb")
+script = ExtResource("1_op4y0")
 metadata/_edit_vertical_guides_ = [-90.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.795393, 0.460079, 0.320325, 1)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_ooga6")
+texture = ExtResource("2_2wufi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bbvrk")
@@ -30,4 +31,8 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_s66oi")
 
+[node name="ChangeDirectionTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="area_entered" from="Hitbox" to="." method="remove" unbinds=1]
+[connection signal="timeout" from="ChangeDirectionTimer" to="." method="_on_change_direction_timer_timeout"]

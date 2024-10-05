@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfa2xbiiyaxkl"]
+[gd_scene load_steps=10 format=3 uid="uid://bfa2xbiiyaxkl"]
 
 [ext_resource type="PackedScene" uid="uid://j82506cb8570" path="res://src/player.tscn" id="1_pla2g"]
 [ext_resource type="Script" path="res://src/stage.gd" id="1_x0yvg"]
 [ext_resource type="PackedScene" uid="uid://bh1nosmui2c64" path="res://src/linear_enemy.tscn" id="2_7mh81"]
+[ext_resource type="PackedScene" uid="uid://m1xvrwl11lw0" path="res://src/random_enemy.tscn" id="3_labhp"]
 
 [sub_resource type="Curve2D" id="Curve2D_cj5w0"]
 _data = {
@@ -23,13 +24,15 @@ normal = Vector2(-1, 0)
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_x0yvg")
-enemy_scene = ExtResource("2_7mh81")
+linear_enemy_scene = ExtResource("2_7mh81")
+random_enemy_scene = ExtResource("3_labhp")
 
 [node name="Player" parent="." instance=ExtResource("1_pla2g")]
 position = Vector2(161, 174)
 
 [node name="EnemyTimer" type="Timer" parent="."]
 wait_time = 0.5
+autostart = true
 
 [node name="EnemyPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_cj5w0")
