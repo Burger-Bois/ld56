@@ -8,7 +8,7 @@ extends Node2D
 @onready var spawn_point4 = $SpawnPoint4 as Marker2D
 
 var max_enemies = 10
-var enemy_count 
+var enemy_count
 
 var spawns = []
 var rng = RandomNumberGenerator.new()
@@ -18,7 +18,7 @@ var rng = RandomNumberGenerator.new()
 func _ready() -> void:
 	spawns.append_array([spawn_point1, spawn_point2, spawn_point3, spawn_point4])
 	enemy_count = count_enemies()
-	
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,11 +29,21 @@ func _process(delta: float) -> void:
 
 func spawn():
 	if enemy_count < max_enemies:
-		var spawn_num = rng.randi_range(0, 3)
-		var enemy = enemy_scene.instantiate()
-		enemy.global_position = spawns[spawn_num].global_position
+		var enemy := enemy_scene.instantiate() as Enemy
+		var enemy_spawn_location = $EnemyPath/EnemySpawnLocation
+		enemy_spawn_location.progress_ratio = randf()
+		var direction = enemy_spawn_location.rotation + PI / 2
+		enemy.direction = direction
+		enemy.position = enemy_spawn_location.position
+
+		## Add some randomness to the direction.
+		#direction += randf_range(-PI / 4, PI / 4)
+		#mob.rotation = direction
+
+
+
 		add_child(enemy)
-		
+
 func count_enemies():
 	var enemies = 0
 	var children = get_children()
@@ -41,6 +51,8 @@ func count_enemies():
 		if c is Enemy:
 			enemies += 1
 	return enemies
-	
-	
-	
+
+
+
+func _on_enemy_timer_timeout() -> void:
+	pass # Replace with function body.

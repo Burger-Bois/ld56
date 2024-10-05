@@ -1,8 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfa2xbiiyaxkl"]
+[gd_scene load_steps=9 format=3 uid="uid://bfa2xbiiyaxkl"]
 
 [ext_resource type="PackedScene" uid="uid://j82506cb8570" path="res://src/player.tscn" id="1_pla2g"]
 [ext_resource type="Script" path="res://src/stage.gd" id="1_x0yvg"]
 [ext_resource type="PackedScene" uid="uid://bh1nosmui2c64" path="res://src/enemy.tscn" id="2_7mh81"]
+
+[sub_resource type="Curve2D" id="Curve2D_cj5w0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -64, -64, 0, 0, 0, 0, 704, -64, 0, 0, 0, 0, 704, 416, 0, 0, 0, 0, -64, 416, 0, 0, 0, 0, -64, -64)
+}
+point_count = 5
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p5ihn"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0qfqy"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8tb5v"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0056x"]
+normal = Vector2(-1, 0)
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_x0yvg")
@@ -11,17 +28,33 @@ enemy_scene = ExtResource("2_7mh81")
 [node name="Player" parent="." instance=ExtResource("1_pla2g")]
 position = Vector2(161, 174)
 
-[node name="SpawnPoint1" type="Marker2D" parent="."]
-position = Vector2(254, -8)
+[node name="EnemyTimer" type="Timer" parent="."]
+wait_time = 0.5
 
-[node name="SpawnPoint2" type="Marker2D" parent="."]
-position = Vector2(649, 160)
+[node name="EnemyPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_cj5w0")
 
-[node name="SpawnPoint3" type="Marker2D" parent="."]
-position = Vector2(377, 368)
+[node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath"]
+position = Vector2(-64, -64)
 
-[node name="SpawnPoint4" type="Marker2D" parent="."]
-position = Vector2(-12, 243)
+[node name="EnemyBoundaryTop" type="Area2D" parent="."]
+position = Vector2(60, -130)
+collision_layer = 16
+collision_mask = 0
 
-[node name="Enemy" parent="." instance=ExtResource("2_7mh81")]
-position = Vector2(354, 180)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBoundaryTop"]
+shape = SubResource("WorldBoundaryShape2D_p5ihn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="EnemyBoundaryTop"]
+position = Vector2(-17, 595)
+shape = SubResource("WorldBoundaryShape2D_0qfqy")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="EnemyBoundaryTop"]
+position = Vector2(-186, 308)
+shape = SubResource("WorldBoundaryShape2D_8tb5v")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="EnemyBoundaryTop"]
+position = Vector2(700, 262)
+shape = SubResource("WorldBoundaryShape2D_0056x")
+
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
