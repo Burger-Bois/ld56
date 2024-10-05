@@ -1,7 +1,31 @@
-[gd_scene format=3 uid="uid://desq18qgx2qvm"]
+[gd_scene load_steps=4 format=3 uid="uid://desq18qgx2qvm"]
+
+[ext_resource type="Script" path="res://src/ui.gd" id="1_2uf0a"]
+[ext_resource type="Texture2D" uid="uid://cjt0y4xany7pd" path="res://assets/Untitled.png" id="1_fyys5"]
+[ext_resource type="Texture2D" uid="uid://djh8y3euhfkwd" path="res://assets/start.png" id="2_nqpl4"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_2uf0a")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="Untitled" type="Sprite2D" parent="Panel"]
+position = Vector2(320, 180)
+texture = ExtResource("1_fyys5")
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 245.0
+offset_top = 244.0
+offset_right = 353.0
+offset_bottom = 302.0
+icon = ExtResource("2_nqpl4")
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

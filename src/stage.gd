@@ -29,19 +29,9 @@ func _process(delta: float) -> void:
 
 func spawn():
 	if enemy_count < max_enemies:
-		var enemy := enemy_scene.instantiate() as Enemy
-		var enemy_spawn_location = $EnemyPath/EnemySpawnLocation
-		enemy_spawn_location.progress_ratio = randf()
-		var direction = enemy_spawn_location.rotation + PI / 2
-		enemy.direction = direction
-		enemy.position = enemy_spawn_location.position
-		
-		## Add some randomness to the direction.
-		#direction += randf_range(-PI / 4, PI / 4)
-		#mob.rotation = direction
-		
-		
-
+		var spawn_num = rng.randi_range(0, 3)
+		var enemy = enemy_scene.instantiate()
+		enemy.global_position = spawns[spawn_num].global_position
 		add_child(enemy)
 		
 func count_enemies():
@@ -52,7 +42,5 @@ func count_enemies():
 			enemies += 1
 	return enemies
 	
-
-
-func _on_enemy_timer_timeout() -> void:
-	pass # Replace with function body.
+	
+	

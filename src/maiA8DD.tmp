@@ -4,4 +4,4 @@
 
 [node name="Main" type="Node"]
 
-[node name="ui" parent="." instance=ExtResource("2_qlupu")]
+[node name="UI" parent="." instance=ExtResource("2_qlupu")]
