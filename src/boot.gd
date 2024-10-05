@@ -12,6 +12,7 @@ var _damage_box_enemies: Array[Enemy] = []
 
 @onready var _animations := $AnimationPlayer as AnimationPlayer
 @onready var _damage_box := $DamageBox as Area2D
+@onready var _hit_box := $Hitbox as Area2D
 @onready var _stomp_particles := $StompParticles as GPUParticles2D
 
 
@@ -21,8 +22,11 @@ func _ready():
 
 func set_state(new_state: State):
 	if new_state == State.IDLE:
+		_hit_box.monitoring = true
 		_animations.speed_scale = 1
 		_animations.play("RESET")
+	else:
+		_hit_box.monitoring = false
 	
 	if new_state == State.LIFTING:
 		_animations.speed_scale = 1
