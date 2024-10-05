@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bh1nosmui2c64"]
+[gd_scene load_steps=4 format=3 uid="uid://dikhumfwfpnci"]
 
+[ext_resource type="Script" path="res://src/enemy.gd" id="1_h6464"]
 [ext_resource type="Texture2D" uid="uid://ddnircrexhpep" path="res://icon.svg" id="1_qpnch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbvrk"]
@@ -7,6 +8,7 @@ size = Vector2(32, 32)
 
 [node name="Enemy" type="CharacterBody2D"]
 motion_mode = 1
+script = ExtResource("1_h6464")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
@@ -14,3 +16,7 @@ texture = ExtResource("1_qpnch")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bbvrk")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
