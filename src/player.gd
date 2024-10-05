@@ -20,8 +20,10 @@ func _process(delta):
 	elif Input.is_action_just_released("left"):
 		if _right_boot.state == Boot.State.LIFTED:
 			_right_boot.state = Boot.State.STOMPING
-		else:
+		elif _right_boot.state == Boot.State.LIFTING:
 			_right_boot.state = Boot.State.LOWERING
+		else:
+			_right_boot.state = Boot.State.IDLE
 
 	if Input.is_action_pressed("right"):
 		if _left_boot.state == Boot.State.IDLE:
@@ -29,8 +31,10 @@ func _process(delta):
 	elif Input.is_action_just_released("right"):
 		if _left_boot.state == Boot.State.LIFTED:
 			_left_boot.state = Boot.State.STOMPING
-		else:
+		elif _left_boot.state == Boot.State.LIFTING:
 			_left_boot.state = Boot.State.LOWERING
+		else:
+			_left_boot.state = Boot.State.IDLE
 	
 	var turn_direction := 0.0
 	if _right_boot.is_pivot() and not _left_boot.is_pivot():
