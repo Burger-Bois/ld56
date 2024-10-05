@@ -30,21 +30,49 @@ offset_right = 165.0
 offset_bottom = 303.0
 icon = ExtResource("2_nqpl4")
 
-[node name="TextEdit" type="TextEdit" parent="Panel"]
+[node name="Sprite2D" type="Sprite2D" parent="Panel"]
+position = Vector2(312, 105)
+texture = ExtResource("4_qel5u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
 layout_mode = 0
-offset_left = 253.0
-offset_top = 210.0
-offset_right = 634.0
-offset_bottom = 354.0
+offset_left = 470.0
+offset_top = 7.0
+offset_right = 639.0
+offset_bottom = 201.0
+theme_override_colors/table_border = Color(0, 0, 0, 1)
+theme_override_colors/table_even_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
 text = "How to play:
 W to move forward
 S to move backwards
 A to lift right foot
 D to lift left foot"
 
-[node name="Sprite2D" type="Sprite2D" parent="Panel"]
-position = Vector2(312, 105)
-texture = ExtResource("4_qel5u")
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 183.0
+offset_top = 231.0
+offset_right = 637.0
+offset_bottom = 356.0
+theme_override_colors/table_border = Color(0, 0, 0, 1)
+theme_override_colors/table_even_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 17
+text = "Credits:
+John - Programming, voice acting
+Zoe - Programming
+James - Music, Design, Additional Programming
+Tom - Audio Mixing"
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource("5_rtldg")]
 
