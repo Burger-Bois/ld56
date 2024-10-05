@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cws28uf05ad5r" path="res://src/boot.tscn" id="2_v8r4r"]
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 motion_mode = 1
 script = ExtResource("1_4c8sp")
 
