@@ -10,7 +10,6 @@ enemy_scene = ExtResource("2_7mh81")
 
 [node name="Player" parent="." instance=ExtResource("1_pla2g")]
 position = Vector2(161, 174)
-script = null
 
 [node name="SpawnPoint1" type="Marker2D" parent="."]
 position = Vector2(254, -8)
