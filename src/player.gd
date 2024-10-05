@@ -9,23 +9,27 @@ class_name Player extends CharacterBody2D
 var _left_lifted := false
 var _right_lifted := false
 
-var _current_pivot_point: Vector2
-var _turn_direction_clockwise: bool
+var _current_pivot: Node2D
+
+
+func _ready():
+	_current_pivot = _left_pivot
 
 
 func _process(delta):
+	var turn_direction := 0.0
 	if Input.is_action_pressed("left"):
+		_current_pivot = _left_pivot
 		_right_lifted = true
-		_left_lifted = false
-		_current_pivot_point = _left_pivot.position.rotated(rotation)
-		_turn_direction_clockwise = true
-	elif Input.is_action_pressed("right"):
-		_right_lifted = false
-		_left_lifted = true
-		_current_pivot_point = _right_pivot.position.rotated(rotation)
-		_turn_direction_clockwise = false
+		turn_direction += -1
 	else:
-		_right_lifted = false
+		_left_lifted = false
+
+	if Input.is_action_pressed("right"):
+		_current_pivot = _right_pivot
+		_left_lifted = true
+		turn_direction += 1
+	else:
 		_left_lifted = false
 	
 	var direction_y := 0.0
@@ -34,11 +38,9 @@ func _process(delta):
 	if Input.is_action_pressed("backward"):
 		direction_y += -1
 	
-	if direction_y != 0 and (_right_lifted or _left_lifted):
-		if _turn_direction_clockwise:
-			rotate_around_point(_current_pivot_point, -direction_y * turn_speed * TAU * delta)
-		else:
-			rotate_around_point(_current_pivot_point, direction_y * turn_speed * TAU * delta)
+	rotate_around_point(
+		_current_pivot.position.rotated(rotation),
+		turn_direction * direction_y * turn_speed * TAU * delta)
 
 
 func rotate_around_point(point: Vector2, rot: float):
