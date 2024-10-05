@@ -1,10 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://cws28uf05ad5r"]
+[gd_scene load_steps=10 format=3 uid="uid://cws28uf05ad5r"]
 
 [ext_resource type="Script" path="res://src/boot.gd" id="2_1ylds"]
 [ext_resource type="Texture2D" uid="uid://b2ggf8dmrc7fj" path="res://assets/boot.png" id="2_y1pjh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dig0s"]
 radius = 50.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_75cam"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 360.0
+spread = 180.0
+initial_velocity_min = 300.0
+initial_velocity_max = 350.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -1200.0
+radial_accel_max = -1000.0
+scale_min = 12.0
+scale_max = 15.0
 
 [sub_resource type="Animation" id="Animation_cjemf"]
 length = 0.001
@@ -161,6 +174,15 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBox"]
 shape = SubResource("CircleShape2D_dig0s")
+
+[node name="StompParticles" type="GPUParticles2D" parent="."]
+modulate = Color(0.318605, 0.181823, 0.0674105, 1)
+position = Vector2(4, 8)
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_75cam")
+lifetime = 0.25
+one_shot = true
 
 [node name="BootSprite" type="Sprite2D" parent="."]
 position = Vector2(5, 11)

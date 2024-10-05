@@ -10,6 +10,7 @@ var _damage_box_enemies: Array[Enemy] = []
 
 @onready var _animations := $AnimationPlayer as AnimationPlayer
 @onready var _damage_box := $DamageBox as Area2D
+@onready var _stomp_particles := $StompParticles as GPUParticles2D
 
 
 func _ready():
@@ -60,5 +61,9 @@ func remove_damage_box_enemy(node: Node2D):
 
 
 func stomp():
+	var enemy_hit := false
 	for enemy in _damage_box_enemies:
 		enemy.hit()
+		enemy_hit = true
+	if enemy_hit:
+		_stomp_particles.restart()
