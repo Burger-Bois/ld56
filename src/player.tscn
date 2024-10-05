@@ -1,12 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://j82506cb8570"]
+[gd_scene load_steps=4 format=3 uid="uid://j82506cb8570"]
 
+[ext_resource type="Script" path="res://src/player.gd" id="1_4c8sp"]
 [ext_resource type="Texture2D" uid="uid://ddnircrexhpep" path="res://icon.svg" id="1_kkory"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeu31"]
 size = Vector2(64, 64)
 
 [node name="Player" type="CharacterBody2D"]
+rotation = -0.295965
 motion_mode = 1
+script = ExtResource("1_4c8sp")
+turn_speed = null
+
+[node name="LeftPivot" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, 0)
+
+[node name="RightPivot" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-64, 0)
 
 [node name="LeftBoot" type="Sprite2D" parent="."]
 position = Vector2(64, 0)
