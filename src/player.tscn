@@ -6,7 +6,6 @@
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_4c8sp")
-turn_speed = null
 
 [node name="LeftBoot" parent="." instance=ExtResource("2_v8r4r")]
 position = Vector2(32, 0)
