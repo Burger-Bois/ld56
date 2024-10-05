@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cb5pi5upwwe8h"]
+[gd_scene load_steps=3 format=3 uid="uid://j82506cb8570"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_4c8sp"]
-[ext_resource type="PackedScene" path="res://src/boot.tscn" id="2_v8r4r"]
+[ext_resource type="PackedScene" uid="uid://cws28uf05ad5r" path="res://src/boot.tscn" id="2_v8r4r"]
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1

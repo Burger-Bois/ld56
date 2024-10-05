@@ -6,7 +6,10 @@ class_name Boot extends Node2D
 
 enum State {IDLE, LIFTING, LOWERING, LIFTED, STOMPING}
 
-@onready var _animations := $AnimationPlayer
+var _damage_box_enemies: Array[Enemy] = []
+
+@onready var _animations := $AnimationPlayer as AnimationPlayer
+@onready var _damage_box := $DamageBox as Area2D
 
 
 func _ready():
@@ -37,7 +40,6 @@ func is_pivot():
 
 
 func _on_animation_finished(animation: String):
-	print("animation finished: " + animation)
 	if animation == "boot/lift":
 		if state == State.LIFTING:
 			state = State.LIFTED
@@ -45,3 +47,20 @@ func _on_animation_finished(animation: String):
 			state = State.IDLE
 	if animation == "boot/stomp":
 		state = State.IDLE
+
+
+func add_damage_box_enemy(node: Node2D):
+	if node is Enemy:
+		_damage_box_enemies.append(node)
+
+
+func remove_damage_box_enemy(node: Node2D):
+	if node in _damage_box_enemies:
+		_damage_box_enemies.erase(node)
+
+
+func stomp():
+	print("stomping")
+	for enemy in _damage_box_enemies:
+		print("stomping: " + enemy.name)
+		enemy.hit()

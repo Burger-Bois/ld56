@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1u8nq23wty5c"]
+[gd_scene load_steps=4 format=3 uid="uid://bfa2xbiiyaxkl"]
 
-[ext_resource type="PackedScene" uid="uid://cb5pi5upwwe8h" path="res://src/player.tscn" id="1_pla2g"]
+[ext_resource type="PackedScene" uid="uid://j82506cb8570" path="res://src/player.tscn" id="1_pla2g"]
 [ext_resource type="Script" path="res://src/stage.gd" id="1_x0yvg"]
-[ext_resource type="PackedScene" uid="uid://dikhumfwfpnci" path="res://src/enemy.tscn" id="2_7mh81"]
+[ext_resource type="PackedScene" uid="uid://bh1nosmui2c64" path="res://src/enemy.tscn" id="2_7mh81"]
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_x0yvg")
@@ -22,3 +22,6 @@ position = Vector2(377, 368)
 
 [node name="SpawnPoint4" type="Marker2D" parent="."]
 position = Vector2(-12, 243)
+
+[node name="Enemy" parent="." instance=ExtResource("2_7mh81")]
+position = Vector2(354, 180)

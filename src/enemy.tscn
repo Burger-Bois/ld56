@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dikhumfwfpnci"]
+[gd_scene load_steps=4 format=3 uid="uid://bh1nosmui2c64"]
 
 [ext_resource type="Script" path="res://src/enemy.gd" id="1_h6464"]
 [ext_resource type="Texture2D" uid="uid://ddnircrexhpep" path="res://icon.svg" id="1_qpnch"]
@@ -7,6 +7,8 @@
 size = Vector2(32, 32)
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_h6464")
 
