@@ -17,21 +17,6 @@ enemy_scene = ExtResource("2_7mh81")
 [node name="Player" parent="." instance=ExtResource("1_pla2g")]
 position = Vector2(161, 174)
 
-[node name="SpawnPoint1" type="Marker2D" parent="."]
-position = Vector2(216, -45)
-
-[node name="SpawnPoint2" type="Marker2D" parent="."]
-position = Vector2(719, 138)
-
-[node name="SpawnPoint3" type="Marker2D" parent="."]
-position = Vector2(396, 420)
-
-[node name="SpawnPoint4" type="Marker2D" parent="."]
-position = Vector2(-87, 246)
-
-[node name="Enemy" parent="." instance=ExtResource("2_7mh81")]
-position = Vector2(354, 180)
-
 [node name="EnemyTimer" type="Timer" parent="."]
 wait_time = 0.5
 
