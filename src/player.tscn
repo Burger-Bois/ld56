@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://j82506cb8570"]
+[gd_scene load_steps=5 format=3 uid="uid://j82506cb8570"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_4c8sp"]
 [ext_resource type="PackedScene" uid="uid://cws28uf05ad5r" path="res://src/boot.tscn" id="2_v8r4r"]
+[ext_resource type="AudioStream" uid="uid://c48kl7y76ngvy" path="res://assets/ouch-left.wav" id="3_kelq0"]
+[ext_resource type="AudioStream" uid="uid://f7rt2btvucx5" path="res://assets/ouch-right.wav" id="4_sioyy"]
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -14,3 +16,13 @@ position = Vector2(32, 0)
 [node name="RightBoot" parent="." instance=ExtResource("2_v8r4r")]
 position = Vector2(-32, 0)
 scale = Vector2(-1, 1)
+
+[node name="OuchLeft" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kelq0")
+volume_db = -6.0
+
+[node name="OuchRight" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sioyy")
+
+[connection signal="hit" from="LeftBoot" to="OuchLeft" method="play" binds= [0.0]]
+[connection signal="hit" from="RightBoot" to="OuchRight" method="play" binds= [0.0]]
