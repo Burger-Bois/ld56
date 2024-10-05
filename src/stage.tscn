@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://j82506cb8570" path="res://src/player.tscn" id="1_pla2g"]
 [ext_resource type="Script" path="res://src/stage.gd" id="1_x0yvg"]
-[ext_resource type="PackedScene" uid="uid://bh1nosmui2c64" path="res://src/enemy.tscn" id="2_7mh81"]
+[ext_resource type="PackedScene" uid="uid://bh1nosmui2c64" path="res://src/linear_enemy.tscn" id="2_7mh81"]
 
 [sub_resource type="Curve2D" id="Curve2D_cj5w0"]
 _data = {

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bh1nosmui2c64"]
 
-[ext_resource type="Script" path="res://src/enemy.gd" id="1_h6464"]
-[ext_resource type="Texture2D" uid="uid://ddnircrexhpep" path="res://icon.svg" id="1_qpnch"]
+[ext_resource type="Script" path="res://src/linear_enemy.gd" id="1_wgipb"]
+[ext_resource type="Texture2D" uid="uid://ddnircrexhpep" path="res://icon.svg" id="2_ooga6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbvrk"]
 size = Vector2(32, 32)
@@ -9,16 +9,16 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s66oi"]
 size = Vector2(32, 32)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="LinearEnemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
 motion_mode = 1
-script = ExtResource("1_h6464")
+script = ExtResource("1_wgipb")
 metadata/_edit_vertical_guides_ = [-90.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_qpnch")
+texture = ExtResource("2_ooga6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bbvrk")
