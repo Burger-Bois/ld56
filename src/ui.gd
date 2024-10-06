@@ -12,13 +12,19 @@ func _process(delta):
 
 
 func start():
-	var stage = stageScene.instantiate()
-	$".".get_parent().add_child(stage)
-	$".".get_parent().remove_child($".")
+	#var stage := stageScene.instantiate() as Stage
+	#stage.finished.connect(_on_game_over)
+	#$".".get_parent().find_child("game").add_child(stage)
+	$Panel.hide()
+	$Panel2.hide()
+	$Panel/AudioStreamPlayer.stop()
+	_on_game_over(Stage.FinishState.GAME_OVER)
 
-func _on_game_over():
+
+
+func _on_game_over(FinishState):
+	print("FUCK!!!!!")
 	$Panel2.show()
-	$panel.hide()
 
 func quit():
 	get_tree().quit()

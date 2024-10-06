@@ -13,7 +13,7 @@ var _health
 
 
 func _ready():
-	_health = 100
+	_health = 10
 	SignalBus.enemy_hit.connect(on_enemy_hit)
 	_current_pivot = _left_boot
 

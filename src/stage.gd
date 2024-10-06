@@ -1,4 +1,4 @@
-extends Node2D
+class_name Stage extends Node2D
 
 
 signal finished(state: FinishState)
@@ -49,6 +49,7 @@ func count_enemies():
 
 func game_over():
 	finished.emit(FinishState.GAME_OVER)
+	
 
 
 func _on_enemy_timer_timeout() -> void:

@@ -76,7 +76,7 @@ Zoe - Programming
 James - Music, Design, Additional Programming
 Tom - Audio Mixing"
 
-[node name="AudioStreamPlayer" parent="." instance=ExtResource("5_rtldg")]
+[node name="AudioStreamPlayer" parent="Panel" instance=ExtResource("5_rtldg")]
 
 [node name="Panel2" type="Panel" parent="."]
 visible = false
@@ -98,10 +98,10 @@ flat = true
 
 [node name="Button" type="Button" parent="Panel2"]
 layout_mode = 0
-offset_left = 463.0
-offset_top = 272.0
-offset_right = 574.0
-offset_bottom = 333.0
+offset_left = 508.0
+offset_top = 273.0
+offset_right = 619.0
+offset_bottom = 334.0
 flat = true
 
 [connection signal="pressed" from="Panel/Button" to="." method="start"]
