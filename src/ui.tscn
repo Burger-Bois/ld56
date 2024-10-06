@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cjt0y4xany7pd" path="res://assets/Untitled.png" id="1_fyys5"]
 [ext_resource type="Texture2D" uid="uid://djh8y3euhfkwd" path="res://assets/start.png" id="2_nqpl4"]
 [ext_resource type="Texture2D" uid="uid://dx3nwppnbjk0y" path="res://assets/title.png" id="4_qel5u"]
-[ext_resource type="PackedScene" uid="uid://dfrmh5x5ff0o6" path="res://src/music.tscn" id="5_rtldg"]
+[ext_resource type="PackedScene" uid="uid://cjluo6hcxj3aj" path="res://src/music.tscn" id="5_rtldg"]
 
 [node name="UI" type="Control"]
 layout_mode = 3

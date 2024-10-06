@@ -1,7 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfrmh5x5ff0o6"]
+[gd_scene load_steps=2 format=3 uid="uid://cjluo6hcxj3aj"]
 
 [ext_resource type="AudioStream" uid="uid://dfah2wen4w1ta" path="res://assets/main_menu.wav" id="1_25oax"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
 stream = ExtResource("1_25oax")
+volume_db = -20.613
 autoplay = true

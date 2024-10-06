@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://m1xvrwl11lw0"]
+[gd_scene load_steps=7 format=3 uid="uid://m1xvrwl11lw0"]
 
 [ext_resource type="Script" path="res://src/random_enemy.gd" id="1_op4y0"]
-[ext_resource type="Texture2D" uid="uid://ddnircrexhpep" path="res://icon.svg" id="2_2wufi"]
+[ext_resource type="Texture2D" uid="uid://ctvt72ep62wwe" path="res://assets/bug1.png" id="2_8g4wx"]
+[ext_resource type="Texture2D" uid="uid://c23bqj031k7ek" path="res://assets/bug2.png" id="3_5ngky"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbvrk"]
 size = Vector2(32, 32)
@@ -9,17 +10,26 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s66oi"]
 size = Vector2(32, 32)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_y6pag"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8g4wx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5ngky")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="RandomEnemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_op4y0")
 metadata/_edit_vertical_guides_ = [-90.0]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.795393, 0.460079, 0.320325, 1)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_2wufi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bbvrk")
@@ -33,6 +43,11 @@ shape = SubResource("RectangleShape2D_s66oi")
 
 [node name="ChangeDirectionTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.564777, 0.376376, 0.130943, 1)
+sprite_frames = SubResource("SpriteFrames_y6pag")
+autoplay = "default"
 
 [connection signal="area_entered" from="Hitbox" to="." method="remove" unbinds=1]
 [connection signal="timeout" from="ChangeDirectionTimer" to="." method="_on_change_direction_timer_timeout"]
