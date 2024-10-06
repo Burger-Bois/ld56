@@ -35,7 +35,6 @@ func _process(delta: float) -> void:
 
 
 func spawn():
-	print("Current enemies: " + str(enemy_count) + ", Max enemies: " + str(max_enemies))
 	if enemy_count < max_enemies:
 		var enemy_select = randi_range(0, enemies.size() - 1)
 		var enemy := enemies[enemy_select].instantiate() as Enemy
@@ -66,3 +65,4 @@ func _on_enemy_timer_timeout() -> void:
 func _on_difficulty_timer_timeout() -> void:
 	_difficulty += 1
 	max_enemies = DEFAULT_ENEMIES * _difficulty
+	print("Max enemies set to " + str(max_enemies))
