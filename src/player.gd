@@ -70,4 +70,4 @@ func take_damage():
 func kill():
 	killed.emit()
 	hide()
-	set_process.call_deferred(false)
+	set.call_deferred("process_mode", ProcessMode.PROCESS_MODE_DISABLED)
