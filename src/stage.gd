@@ -1,7 +1,12 @@
 extends Node2D
 
+
+signal finished(state: FinishState)
+
 @export var linear_enemy_scene: PackedScene
 @export var random_enemy_scene: PackedScene
+
+enum FinishState {GAME_OVER}
 
 var max_enemies = 10
 var enemy_count
@@ -40,6 +45,9 @@ func count_enemies():
 			enemies += 1
 	return enemies
 
+
+func game_over():
+	finished.emit(FinishState.GAME_OVER)
 
 
 func _on_enemy_timer_timeout() -> void:

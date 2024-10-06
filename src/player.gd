@@ -64,4 +64,9 @@ func rotate_around_point(point: Vector2, rot: float):
 
 
 func take_damage():
+	kill()
+
+
+func kill():
 	killed.emit()
+	queue_free()
