@@ -5,11 +5,12 @@ signal finished(state: FinishState)
 
 @export var linear_enemy_scene: PackedScene
 @export var random_enemy_scene: PackedScene
+@export var spikey_enemy_scene: PackedScene
 
 
 enum FinishState {GAME_OVER}
 
-const DEFAULT_ENEMIES = 15
+const DEFAULT_ENEMIES = 20
 
 var _difficulty = 1
 var max_enemies
@@ -23,7 +24,7 @@ var rng = RandomNumberGenerator.new()
 func _ready() -> void:
 	max_enemies = DEFAULT_ENEMIES
 	$DifficultyTimer.start()
-	enemies = [linear_enemy_scene, random_enemy_scene]
+	enemies = [linear_enemy_scene, random_enemy_scene, spikey_enemy_scene]
 	enemy_count = count_enemies()
 
 
