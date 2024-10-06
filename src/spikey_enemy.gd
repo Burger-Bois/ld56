@@ -3,7 +3,7 @@ extends Enemy
 func _ready() -> void:
 	speed = 90
 	damage = 10
-	health_bonus = -10
+	health_bonus = -15
 
 func _physics_process(delta: float) -> void:
 	velocity = Vector2.RIGHT.rotated(direction) * speed
