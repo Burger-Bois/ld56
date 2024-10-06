@@ -9,7 +9,10 @@ signal finished(state: FinishState)
 
 enum FinishState {GAME_OVER}
 
-var max_enemies = 50
+const DEFAULT_ENEMIES = 15
+
+var _difficulty = 1
+var max_enemies
 var enemy_count
 
 var enemies
@@ -18,6 +21,8 @@ var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	max_enemies = DEFAULT_ENEMIES
+	$DifficultyTimer.start()
 	enemies = [linear_enemy_scene, random_enemy_scene]
 	enemy_count = count_enemies()
 
@@ -28,6 +33,7 @@ func _process(delta: float) -> void:
 
 
 func spawn():
+	print("Current enemies: " + str(enemy_count) + ", Max enemies: " + str(max_enemies))
 	if enemy_count < max_enemies:
 		var enemy_select = randi_range(0, enemies.size() - 1)
 		var enemy := enemies[enemy_select].instantiate() as Enemy
@@ -51,6 +57,9 @@ func game_over():
 	finished.emit(FinishState.GAME_OVER)
 	
 
-
 func _on_enemy_timer_timeout() -> void:
 	spawn() 
+
+func _on_difficulty_timer_timeout() -> void:
+	_difficulty += 1
+	max_enemies = DEFAULT_ENEMIES * _difficulty

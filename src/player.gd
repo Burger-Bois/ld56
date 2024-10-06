@@ -70,7 +70,6 @@ func take_damage(enemy: Enemy):
 	var new_health = _health - enemy.damage
 	set_health(new_health)
 	print("health: " + str(_health))
-	#kill()
 	
 
 func on_enemy_hit(enemy: Enemy):
