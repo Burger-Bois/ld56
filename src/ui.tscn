@@ -125,6 +125,7 @@ flat = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameOverScreen"]
 stream = ExtResource("7_5y3sd")
+volume_db = -7.495
 
 [node name="Score" type="RichTextLabel" parent="."]
 visible = false

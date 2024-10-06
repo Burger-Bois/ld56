@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cufy382dcylq7"]
+[gd_scene load_steps=7 format=3 uid="uid://cgup3bx2ixj7f"]
 
 [ext_resource type="Script" path="res://src/spikey_enemy.gd" id="1_by0dh"]
 [ext_resource type="Texture2D" uid="uid://bqmpmw8b6a44c" path="res://assets/bomb bug.png" id="2_x4565"]
