@@ -8,7 +8,7 @@ signal finished(state: FinishState)
 
 enum FinishState {GAME_OVER}
 
-var max_enemies = 10
+var max_enemies = 50
 var enemy_count
 
 var enemies

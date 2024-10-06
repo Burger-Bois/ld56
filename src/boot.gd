@@ -1,7 +1,7 @@
 class_name Boot extends Node2D
 
 
-signal hit
+signal hit(enemy: Enemy)
 
 @export var state: State = State.IDLE:
 	set=set_state
@@ -79,5 +79,5 @@ func stomp():
 		_stomp_particles.restart()
 
 
-func _hit():
-	hit.emit()
+func _hit(enemy: Enemy):
+	hit.emit(enemy)

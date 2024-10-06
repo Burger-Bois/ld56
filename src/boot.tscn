@@ -233,4 +233,4 @@ libraries = {
 
 [connection signal="body_entered" from="DamageBox" to="." method="add_damage_box_enemy"]
 [connection signal="body_exited" from="DamageBox" to="." method="remove_damage_box_enemy"]
-[connection signal="body_entered" from="Hitbox" to="." method="_hit" unbinds=1]
+[connection signal="body_entered" from="Hitbox" to="." method="_hit"]

@@ -9,9 +9,12 @@ signal killed
 @onready var _right_boot := $RightBoot as Boot
 
 var _current_pivot: Node2D
+var _health
 
 
 func _ready():
+	_health = 100
+	SignalBus.enemy_hit.connect(on_enemy_hit)
 	_current_pivot = _left_boot
 
 
@@ -63,9 +66,28 @@ func rotate_around_point(point: Vector2, rot: float):
 	move_and_collide(position_delta)
 
 
-func take_damage():
-	kill()
+func take_damage(enemy: Enemy):
+	var new_health = _health - enemy.damage
+	set_health(new_health)
+	print("health: " + str(_health))
+	#kill()
+	
 
+func on_enemy_hit(enemy: Enemy):
+	var new_health = _health + enemy.health_bonus
+	set_health(new_health)
+	print("health: " + str(_health))
+	
+			
+
+func set_health(health: int):
+	if health <= 0:
+		_health = 0
+		kill()
+	elif health >= 100:
+		_health = 100
+	else:
+		_health = health
 
 func kill():
 	killed.emit()
