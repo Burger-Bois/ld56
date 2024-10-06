@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D
 
 signal killed
 
-@export var turn_speed := 0.25
+@export var turn_speed := 0.50
 
 @onready var _left_boot := $LeftBoot as Boot
 @onready var _right_boot := $RightBoot as Boot
@@ -17,7 +17,7 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_pressed("left"):
-		if _right_boot.state == Boot.State.IDLE:
+		if _right_boot.state == Boot.State.IDLE and _left_boot.is_pivot():
 			_right_boot.state = Boot.State.LIFTING
 	elif Input.is_action_just_released("left"):
 		if _right_boot.state == Boot.State.LIFTED:
@@ -28,7 +28,7 @@ func _process(delta):
 			_right_boot.state = Boot.State.IDLE
 
 	if Input.is_action_pressed("right"):
-		if _left_boot.state == Boot.State.IDLE:
+		if _left_boot.state == Boot.State.IDLE and _right_boot.is_pivot():
 			_left_boot.state = Boot.State.LIFTING
 	elif Input.is_action_just_released("right"):
 		if _left_boot.state == Boot.State.LIFTED:

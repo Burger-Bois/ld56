@@ -27,6 +27,10 @@ func set_state(new_state: State):
 		_animations.play("RESET")
 	else:
 		_hit_box.monitoring = false
+
+	if new_state == State.LIFTED:
+		_animations.speed_scale = 1
+		_animations.play("boot/stomp_ready")
 	
 	if new_state == State.LIFTING:
 		_animations.speed_scale = 1
