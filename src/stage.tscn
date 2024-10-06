@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bh1nosmui2c64" path="res://src/linear_enemy.tscn" id="2_7mh81"]
 [ext_resource type="PackedScene" uid="uid://m1xvrwl11lw0" path="res://src/random_enemy.tscn" id="3_labhp"]
 [ext_resource type="Texture2D" uid="uid://rkedicfg67o5" path="res://assets/background-grass.png" id="4_0kh3u"]
-[ext_resource type="PackedScene" uid="uid://cgup3bx2ixj7f" path="res://src/spikey_enemy.tscn" id="4_hw7w1"]
+[ext_resource type="PackedScene" uid="uid://cufy382dcylq7" path="res://src/spikey_enemy.tscn" id="4_hw7w1"]
 [ext_resource type="Texture2D" uid="uid://b6xf6xxidqbrk" path="res://assets/fence.png" id="5_hbomb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bxj2c"]
@@ -83,6 +83,8 @@ tile_set = SubResource("TileSet_jt0kg")
 [node name="Player" parent="." instance=ExtResource("1_pla2g")]
 z_index = 10
 position = Vector2(544, 576)
+turn_speed = 0.5
+jump_speed = 100.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = -64

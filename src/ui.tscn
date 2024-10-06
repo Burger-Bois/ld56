@@ -104,6 +104,15 @@ offset_right = 619.0
 offset_bottom = 334.0
 flat = true
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 569.0
+offset_top = 4.0
+offset_right = 638.0
+offset_bottom = 44.0
+text = "Score:"
+
 [connection signal="pressed" from="Panel/Button" to="." method="start"]
 [connection signal="pressed" from="Panel2/Button2" to="." method="restart"]
 [connection signal="pressed" from="Panel2/Button" to="." method="quit"]
