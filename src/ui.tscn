@@ -82,7 +82,8 @@ text = "How to play:
 W to move forward
 S to move backwards
 A to lift right foot
-D to lift left foot"
+D to lift left foot
+Space to jump"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="MainMenu"]
 layout_mode = 0
@@ -98,9 +99,10 @@ theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
 theme_override_colors/selection_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "Credits:
-John - Programming, voice acting
+John - Programming
 Zoe - Programming
 James - Music, Design, Additional Programming
+Toby - Voice acting
 Tom - Audio Mixing"
 
 [node name="AudioStreamPlayer" parent="MainMenu" instance=ExtResource("5_rtldg")]
