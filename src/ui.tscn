@@ -1,13 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://desq18qgx2qvm"]
+[gd_scene load_steps=14 format=3 uid="uid://desq18qgx2qvm"]
 
 [ext_resource type="Script" path="res://src/ui.gd" id="1_2uf0a"]
 [ext_resource type="Texture2D" uid="uid://cjt0y4xany7pd" path="res://assets/Untitled.png" id="1_fyys5"]
+[ext_resource type="FontFile" uid="uid://xmkia5no5rje" path="res://assets/fonts/PeaberryBase.ttf" id="1_xkc3i"]
 [ext_resource type="Texture2D" uid="uid://djh8y3euhfkwd" path="res://assets/start.png" id="2_nqpl4"]
 [ext_resource type="Texture2D" uid="uid://dx3nwppnbjk0y" path="res://assets/title.png" id="4_qel5u"]
 [ext_resource type="PackedScene" uid="uid://cjluo6hcxj3aj" path="res://src/music.tscn" id="5_rtldg"]
 [ext_resource type="Texture2D" uid="uid://bvew24qjwmrgh" path="res://assets/game over.png" id="6_lj3qr"]
 [ext_resource type="AudioStream" uid="uid://8rvqi1gpj17p" path="res://assets/music/gameOver.wav" id="7_5y3sd"]
 [ext_resource type="Script" path="res://src/health_bar.gd" id="8_x60es"]
+[ext_resource type="Script" path="res://src/score_counter.gd" id="9_w7tn7"]
+
+[sub_resource type="Theme" id="Theme_es22y"]
+default_font = ExtResource("1_xkc3i")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnk1t"]
 border_width_left = 1
@@ -31,6 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_es22y")
 script = ExtResource("1_2uf0a")
 
 [node name="MainMenu" type="Panel" parent="."]
@@ -57,7 +63,7 @@ texture = ExtResource("4_qel5u")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MainMenu"]
 layout_mode = 0
-offset_left = 470.0
+offset_left = 463.0
 offset_top = 7.0
 offset_right = 639.0
 offset_bottom = 201.0
@@ -88,7 +94,6 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
 theme_override_colors/selection_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 17
 text = "Credits:
 John - Programming, voice acting
 Zoe - Programming
@@ -125,16 +130,18 @@ flat = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameOverScreen"]
 stream = ExtResource("7_5y3sd")
-volume_db = -7.495
+volume_db = -12.0
 
-[node name="Score" type="RichTextLabel" parent="."]
+[node name="ScoreCounter" type="RichTextLabel" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 569.0
+offset_left = 545.0
 offset_top = 4.0
 offset_right = 638.0
 offset_bottom = 44.0
 text = "Score:"
+text_direction = 1
+script = ExtResource("9_w7tn7")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 visible = false
@@ -149,10 +156,42 @@ grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_xnk1t")
 theme_override_styles/fill = SubResource("StyleBoxFlat_651ny")
+step = 1.0
 value = 100.0
 show_percentage = false
 script = ExtResource("8_x60es")
 
+[node name="PauseMenu" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Continue"
+
+[node name="RestartButton" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
 [connection signal="pressed" from="MainMenu/Button" to="." method="start"]
 [connection signal="pressed" from="GameOverScreen/Button2" to="." method="restart"]
 [connection signal="pressed" from="GameOverScreen/Button" to="." method="quit"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/ContinueButton" to="." method="paused" binds= [false]]
+[connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/RestartButton" to="." method="restart"]

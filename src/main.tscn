@@ -4,9 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://desq18qgx2qvm" path="res://src/ui.tscn" id="2_qlupu"]
 
 [node name="Main" type="Node"]
+process_mode = 3
 script = ExtResource("1_uo5vg")
 
 [node name="game" type="Node" parent="."]
+process_mode = 1
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
