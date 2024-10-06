@@ -1,12 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://j82506cb8570"]
+[gd_scene load_steps=10 format=3 uid="uid://j82506cb8570"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_4c8sp"]
 [ext_resource type="PackedScene" uid="uid://cws28uf05ad5r" path="res://src/boot.tscn" id="2_v8r4r"]
 [ext_resource type="AudioStream" uid="uid://c48kl7y76ngvy" path="res://assets/ouch-left.wav" id="3_kelq0"]
 [ext_resource type="AudioStream" uid="uid://f7rt2btvucx5" path="res://assets/ouch-right.wav" id="4_sioyy"]
+[ext_resource type="AudioStream" uid="uid://cmde8b8s0jpy2" path="res://assets/Splats/body hit with grunt 1.wav" id="5_hkybp"]
+[ext_resource type="AudioStream" uid="uid://c46jrg3u1torb" path="res://assets/Splats/body hit with grunt 2.wav" id="6_581li"]
+[ext_resource type="AudioStream" uid="uid://ch82wlawx6yo0" path="res://assets/Splats/body hit with grunt 3.wav" id="7_dthg7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dql0k"]
 size = Vector2(88, 50)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tw3u0"]
+streams_count = 3
+stream_0/stream = ExtResource("5_hkybp")
+stream_1/stream = ExtResource("6_581li")
+stream_2/stream = ExtResource("7_dthg7")
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -14,8 +23,6 @@ collision_layer = 0
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_4c8sp")
-turn_speed = null
-jump_speed = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
@@ -37,6 +44,9 @@ volume_db = -6.0
 
 [node name="OuchRight" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_sioyy")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_tw3u0")
 
 [connection signal="hit" from="LeftBoot" to="." method="take_damage"]
 [connection signal="hit" from="LeftBoot" to="OuchLeft" method="play" unbinds=1]

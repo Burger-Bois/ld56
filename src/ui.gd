@@ -31,6 +31,7 @@ func start():
 func _on_game_over(FinishState):
 	print("FUCK!!!!!")
 	$Panel2.show()
+	$Panel2/AudioStreamPlayer.play()
 
 func on_enemy_hit(enemy_hit):
 	score += 1
@@ -43,4 +44,6 @@ func quit():
 
 func restart():
 	$RichTextLabel.clear()
+	$RichTextLabel.add_text("Score:")
+	$Panel2/AudioStreamPlayer.stop()
 	start()

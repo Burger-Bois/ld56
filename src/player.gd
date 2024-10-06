@@ -19,7 +19,7 @@ var _state: State = State.IDLE
 
 
 func _ready():
-	_health = 100
+	_health = 10
 	SignalBus.enemy_hit.connect(on_enemy_hit)
 	_current_pivot = _left_boot
 
@@ -95,6 +95,8 @@ func on_enemy_hit(enemy: Enemy):
 	var new_health = _health + enemy.health_bonus
 	set_health(new_health)
 	print("health: " + str(_health))
+	$AudioStreamPlayer.play()
+	
 
 
 func set_health(health: int):

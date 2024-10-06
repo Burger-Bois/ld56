@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://bfa2xbiiyaxkl"]
+[gd_scene load_steps=18 format=4 uid="uid://bfa2xbiiyaxkl"]
 
 [ext_resource type="PackedScene" uid="uid://j82506cb8570" path="res://src/player.tscn" id="1_pla2g"]
 [ext_resource type="Script" path="res://src/stage.gd" id="1_x0yvg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://rkedicfg67o5" path="res://assets/background-grass.png" id="4_0kh3u"]
 [ext_resource type="PackedScene" uid="uid://cufy382dcylq7" path="res://src/spikey_enemy.tscn" id="4_hw7w1"]
 [ext_resource type="Texture2D" uid="uid://b6xf6xxidqbrk" path="res://assets/fence.png" id="5_hbomb"]
+[ext_resource type="AudioStream" uid="uid://bab7vj02aurep" path="res://assets/bugbob.mp3" id="8_5kjde"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bxj2c"]
 texture = ExtResource("4_0kh3u")
@@ -83,8 +84,6 @@ tile_set = SubResource("TileSet_jt0kg")
 [node name="Player" parent="." instance=ExtResource("1_pla2g")]
 z_index = 10
 position = Vector2(544, 576)
-turn_speed = 0.5
-jump_speed = 100.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = -64
@@ -125,6 +124,10 @@ shape = SubResource("WorldBoundaryShape2D_0056x")
 
 [node name="DifficultyTimer" type="Timer" parent="."]
 wait_time = 12.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_5kjde")
+volume_db = -11.244
 
 [connection signal="killed" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]

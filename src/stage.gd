@@ -26,6 +26,7 @@ func _ready() -> void:
 	$DifficultyTimer.start()
 	enemies = [linear_enemy_scene, random_enemy_scene, spikey_enemy_scene]
 	enemy_count = count_enemies()
+	$AudioStreamPlayer.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,6 +56,7 @@ func count_enemies():
 
 
 func game_over():
+	$AudioStreamPlayer.stop()
 	finished.emit(FinishState.GAME_OVER)
 	
 
