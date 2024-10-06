@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 class_name Enemy
 
-@export var direction := 0.0
+@export var direction := 0.0:
+	set=set_direction
 @export var speed = 70.0
 
 var damage = 10
@@ -16,3 +17,8 @@ func hit():
 
 func remove():
 	queue_free()
+
+
+func set_direction(new_direction: float):
+	direction = new_direction
+	rotation = new_direction

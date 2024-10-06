@@ -2,7 +2,7 @@ extends Enemy
 
 func _ready() -> void:
 	speed = 90
-	damage = 10
+	damage = 5
 	health_bonus = -15
 
 func _physics_process(delta: float) -> void:

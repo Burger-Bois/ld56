@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://desq18qgx2qvm"]
+[gd_scene load_steps=15 format=3 uid="uid://desq18qgx2qvm"]
 
 [ext_resource type="Script" path="res://src/ui.gd" id="1_2uf0a"]
 [ext_resource type="Texture2D" uid="uid://cjt0y4xany7pd" path="res://assets/Untitled.png" id="1_fyys5"]
@@ -13,6 +13,9 @@
 
 [sub_resource type="Theme" id="Theme_es22y"]
 default_font = ExtResource("1_xkc3i")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecmhi"]
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnk1t"]
 border_width_left = 1
@@ -112,22 +115,6 @@ offset_bottom = 365.0
 position = Vector2(320, 180)
 texture = ExtResource("6_lj3qr")
 
-[node name="Button2" type="Button" parent="GameOverScreen"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 278.0
-offset_right = 190.0
-offset_bottom = 333.0
-flat = true
-
-[node name="Button" type="Button" parent="GameOverScreen"]
-layout_mode = 0
-offset_left = 508.0
-offset_top = 273.0
-offset_right = 619.0
-offset_bottom = 334.0
-flat = true
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameOverScreen"]
 stream = ExtResource("7_5y3sd")
 volume_db = -12.0
@@ -142,6 +129,55 @@ theme_override_font_sizes/normal_font_size = 32
 text = "Score:"
 text_direction = 1
 script = ExtResource("9_w7tn7")
+
+[node name="Panel" type="Panel" parent="GameOverScreen"]
+layout_mode = 0
+offset_right = 639.0
+offset_bottom = 89.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ecmhi")
+
+[node name="Panel2" type="Panel" parent="GameOverScreen"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 260.0
+offset_right = 629.0
+offset_bottom = 345.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ecmhi")
+
+[node name="Label" type="Label" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 39.0
+offset_bottom = 71.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Your stomping days are done"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="GameOverScreen"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 277.0
+offset_right = 149.0
+offset_bottom = 332.0
+focus_neighbor_right = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+toggle_mode = true
+text = "Restart"
+flat = true
+
+[node name="QuitButton" type="Button" parent="GameOverScreen"]
+layout_mode = 0
+offset_left = 501.0
+offset_top = 276.0
+offset_right = 612.0
+offset_bottom = 337.0
+focus_neighbor_left = NodePath("../RestartButton")
+focus_previous = NodePath("../RestartButton")
+toggle_mode = true
+text = "Quit"
+flat = true
 
 [node name="GameUI" type="Control" parent="."]
 visible = false
@@ -203,19 +239,25 @@ horizontal_alignment = 1
 [node name="ContinueButton" type="Button" parent="GameUI/PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../MainMenuButton")
+focus_neighbor_bottom = NodePath("../RestartButton")
 text = "Continue"
 
 [node name="RestartButton" type="Button" parent="GameUI/PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../ContinueButton")
+focus_neighbor_bottom = NodePath("../MainMenuButton")
 text = "Restart"
 
 [node name="MainMenuButton" type="Button" parent="GameUI/PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../RestartButton")
+focus_neighbor_bottom = NodePath("../ContinueButton")
 text = "Main Menu"
 
 [connection signal="pressed" from="MainMenu/Button" to="." method="start"]
-[connection signal="pressed" from="GameOverScreen/Button2" to="." method="start"]
-[connection signal="pressed" from="GameOverScreen/Button" to="." method="quit"]
+[connection signal="pressed" from="GameOverScreen/RestartButton" to="." method="start"]
+[connection signal="pressed" from="GameOverScreen/QuitButton" to="." method="quit"]
 [connection signal="pressed" from="GameUI/PauseMenu/CenterContainer/VBoxContainer/ContinueButton" to="." method="paused" binds= [false]]
 [connection signal="pressed" from="GameUI/PauseMenu/CenterContainer/VBoxContainer/RestartButton" to="." method="start"]
 [connection signal="pressed" from="GameUI/PauseMenu/CenterContainer/VBoxContainer/MainMenuButton" to="." method="stop"]

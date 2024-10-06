@@ -3,12 +3,16 @@ extends Control
 @export var _game: Node
 
 @onready var _main_menu := $MainMenu as Control
+@onready var _main_menu_focus := $MainMenu/Button as Button
 @onready var _main_menu_music := $MainMenu/AudioStreamPlayer as AudioStreamPlayer
 
 @onready var _game_over_screen := $GameOverScreen as Control
+@onready var _game_over_focus := $GameOverScreen/RestartButton as Button
 @onready var _game_over_music := $GameOverScreen/AudioStreamPlayer as AudioStreamPlayer
 
 @onready var _game_ui := $GameUI
+
+@onready var _pause_focus := $GameUI/PauseMenu/CenterContainer/VBoxContainer/ContinueButton as Button
 
 
 var stageScene = preload("res://src/stage.tscn")
@@ -19,6 +23,7 @@ var _playing := false
 
 func _ready():
 	SignalBus.enemy_hit.connect(on_enemy_hit)
+	activate_main_menu()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
@@ -71,6 +76,7 @@ func activate_main_menu():
 	_game_over_screen.hide()
 	_game_over_music.stop()
 	_game_ui.hide()
+	_main_menu_focus.grab_focus()
 
 
 func activate_game_over_screen():
@@ -79,6 +85,7 @@ func activate_game_over_screen():
 	_game_over_screen.show()
 	_game_over_music.play()
 	_game_ui.hide()
+	_game_over_focus.grab_focus()
 
 
 func activate_game_ui():
@@ -93,6 +100,8 @@ func paused(value: bool):
 	if _playing:
 		get_tree().paused = value
 		%PauseMenu.visible = value
+	if value:
+		_pause_focus.grab_focus()
 
 
 func set_score(new_value: int):

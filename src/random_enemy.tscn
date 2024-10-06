@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://m1xvrwl11lw0"]
+[gd_scene load_steps=7 format=3 uid="uid://jx0os7xl2mql"]
 
 [ext_resource type="Script" path="res://src/random_enemy.gd" id="1_op4y0"]
 [ext_resource type="Texture2D" uid="uid://c3ac58bgb4fex" path="res://assets/spider.png" id="2_pdabw"]
@@ -45,6 +45,7 @@ shape = SubResource("RectangleShape2D_s66oi")
 autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.57079
 sprite_frames = SubResource("SpriteFrames_y6pag")
 autoplay = "default"
 
