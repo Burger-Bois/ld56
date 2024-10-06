@@ -1,14 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://j82506cb8570"]
+[gd_scene load_steps=6 format=3 uid="uid://j82506cb8570"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_4c8sp"]
 [ext_resource type="PackedScene" uid="uid://cws28uf05ad5r" path="res://src/boot.tscn" id="2_v8r4r"]
 [ext_resource type="AudioStream" uid="uid://c48kl7y76ngvy" path="res://assets/ouch-left.wav" id="3_kelq0"]
 [ext_resource type="AudioStream" uid="uid://f7rt2btvucx5" path="res://assets/ouch-right.wav" id="4_sioyy"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dql0k"]
+size = Vector2(88, 50)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
+collision_layer = 0
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_4c8sp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_dql0k")
 
 [node name="LeftBoot" parent="." instance=ExtResource("2_v8r4r")]
 position = Vector2(32, 0)

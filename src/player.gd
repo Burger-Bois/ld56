@@ -60,7 +60,7 @@ func _process(delta):
 func rotate_around_point(point: Vector2, rot: float):
 	var position_delta := -point.rotated(rot) + point
 	rotation += rot
-	position += position_delta
+	move_and_collide(position_delta)
 
 
 func take_damage():
@@ -69,4 +69,5 @@ func take_damage():
 
 func kill():
 	killed.emit()
-	queue_free()
+	hide()
+	process_mode = ProcessMode.PROCESS_MODE_DISABLED

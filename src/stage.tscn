@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=4 uid="uid://bfa2xbiiyaxkl"]
+[gd_scene load_steps=16 format=4 uid="uid://bfa2xbiiyaxkl"]
 
 [ext_resource type="PackedScene" uid="uid://j82506cb8570" path="res://src/player.tscn" id="1_pla2g"]
 [ext_resource type="Script" path="res://src/stage.gd" id="1_x0yvg"]
 [ext_resource type="PackedScene" path="res://src/linear_enemy.tscn" id="2_7mh81"]
 [ext_resource type="PackedScene" path="res://src/random_enemy.tscn" id="3_labhp"]
 [ext_resource type="Texture2D" uid="uid://rkedicfg67o5" path="res://assets/background-grass.png" id="4_0kh3u"]
+[ext_resource type="Texture2D" uid="uid://b6xf6xxidqbrk" path="res://assets/fence.png" id="5_hbomb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bxj2c"]
 texture = ExtResource("4_0kh3u")
@@ -15,9 +16,37 @@ texture_region_size = Vector2i(256, 256)
 tile_size = Vector2i(256, 256)
 sources/1 = SubResource("TileSetAtlasSource_bxj2c")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w114l"]
+texture = ExtResource("5_hbomb")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_jt0kg"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_w114l")
+
 [sub_resource type="Curve2D" id="Curve2D_cj5w0"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -64, -64, 0, 0, 0, 0, 704, -64, 0, 0, 0, 0, 704, 416, 0, 0, 0, 0, -64, 416, 0, 0, 0, 0, -64, -64)
+"points": PackedVector2Array(0, 0, 0, 0, -128, -128, 0, 0, 0, 0, 1216, -128, 0, 0, 0, 0, 1216, 1216, 0, 0, 0, 0, -128, 1216, 0, 0, 0, 0, -128, -128)
 }
 point_count = 5
 
@@ -36,13 +65,26 @@ normal = Vector2(-1, 0)
 script = ExtResource("1_x0yvg")
 linear_enemy_scene = ExtResource("2_7mh81")
 random_enemy_scene = ExtResource("3_labhp")
+metadata/_edit_vertical_guides_ = [1198.0]
+metadata/_edit_horizontal_guides_ = [1146.0]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD/////AQAAAAAAAAAAAP//AQAAAAAAAAABAP//AQAAAAAAAAACAP//AQAAAAAAAAADAP//AQAAAAAAAAADAAAAAQAAAAAAAAADAAEAAQAAAAAAAAADAAIAAQAAAAAAAAACAAIAAQAAAAAAAAABAAIAAQAAAAAAAAAAAAIAAQAAAAAAAAD//wIAAQAAAAAAAAD//wEAAQAAAAAAAAD//wAAAQAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAACAAEAAQAAAAAAAAABAAEAAQAAAAAAAAAAAAEAAQAAAAAAAAA=")
+[node name="BackgroundTiles" type="TileMapLayer" parent="."]
+modulate = Color(0.522925, 0.65, 0.5005, 1)
+tile_map_data = PackedByteArray("AAD/////AQAAAAAAAAAAAP//AQAAAAAAAAABAP//AQAAAAAAAAACAP//AQAAAAAAAAADAP//AQAAAAAAAAADAAAAAQAAAAAAAAADAAEAAQAAAAAAAAADAAIAAQAAAAAAAAACAAIAAQAAAAAAAAABAAIAAQAAAAAAAAAAAAIAAQAAAAAAAAD//wIAAQAAAAAAAAD//wEAAQAAAAAAAAD//wAAAQAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAACAAEAAQAAAAAAAAABAAEAAQAAAAAAAAAAAAEAAQAAAAAAAAAEAP//AQAAAAAAAAAEAAAAAQAAAAAAAAAEAAEAAQAAAAAAAAAEAAIAAQAAAAAAAAAEAAMAAQAAAAAAAAAEAAQAAQAAAAAAAAADAAQAAQAAAAAAAAACAAQAAQAAAAAAAAABAAQAAQAAAAAAAAAAAAQAAQAAAAAAAAD//wQAAQAAAAAAAAD//wMAAQAAAAAAAAAAAAMAAQAAAAAAAAABAAMAAQAAAAAAAAACAAMAAQAAAAAAAAADAAMAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_6rfd3")
 
+[node name="FenceTiles" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAAAP//AAAAAAEAAAABAP//AAABAAEAAAACAP//AAACAAEAAAADAP//AAAAAAIAAAAEAP//AAABAAIAAAAFAP//AAACAAIAAAAGAP//AAACAAAAAAAHAP//AAAAAAEAAAAIAP//AAABAAEAAAAJAP//AAACAAEAAAAKAP//AAAAAAIAAAALAP//AAABAAIAAAAMAP//AAACAAIAAAANAP//AAACAAAAAAAOAP//AAAAAAEAAAAPAP//AAABAAEAAAAQAP//AAACAAEAAAARAP//AAAAAAIAAAASAP//AAABAAIAAAATAP//AAACAAIAAAAUAP//AAACAAAAAAAVAP//AAAAAAEAAAAWAP//AAABAAEAAAAXAP//AAACAAEAAAAYAP//AAAAAAIAAAAZAP//AAABAAIAAAAaAP//AAACAAIAAAAbAP//AAACAAAAAAAcAP//AAAAAAEAAAAdAP//AAABAAEAAAAeAP//AAACAAEAAAAfAP//AAAAAAIAAAAgAP//AAABAAIAAAAhAP//AAACAAIAAAAiAP//AAAAAAAAAFAiAAAAAAAAAAEAAFAiAAEAAAABAAEAAFAiAAIAAAACAAEAAFAiAAQAAAABAAIAAFAiAAMAAAAAAAIAAFAiAAUAAAACAAIAAFAiAAYAAAACAAAAAFAiAAcAAAAAAAEAAFAiAAgAAAABAAEAAFAiAAkAAAACAAEAAFAiAAoAAAAAAAIAAFAiAAsAAAABAAIAAFAiAAwAAAACAAIAAFAiAA0AAAACAAAAAFAiAA4AAAAAAAEAAFAiAA8AAAABAAEAAFAiABAAAAACAAEAAFAiABEAAAAAAAIAAFAiABIAAAABAAIAAFAiABMAAAACAAIAAFAiABQAAAACAAAAAFAiABUAAAAAAAEAAFAiABYAAAABAAEAAFAiABcAAAACAAEAAFAiABgAAAAAAAIAAFAiABkAAAABAAIAAFAiABoAAAACAAIAAFAiABsAAAACAAAAAFAiABwAAAAAAAEAAFAiAB0AAAABAAEAAFAiAB4AAAACAAEAAFAiAB8AAAAAAAIAAFAiACAAAAABAAIAAFAiACEAAAACAAIAAFAiACIAAAAAAAAAADD//yIAAAAAAAAAAGAAACIAAAAAAAEAAAABACIAAAABAAEAAAACACIAAAACAAEAAAADACIAAAAAAAIAAAAEACIAAAABAAIAAAAFACIAAAACAAIAAAAGACIAAAACAAAAAAAHACIAAAAAAAEAAAAIACIAAAABAAEAAAAJACIAAAACAAEAAAAKACIAAAAAAAIAAAALACIAAAABAAIAAAAMACIAAAACAAIAAAANACIAAAACAAAAAAAOACIAAAAAAAEAAAAPACIAAAABAAEAAAAQACIAAAACAAEAAAARACIAAAAAAAIAAAASACIAAAABAAIAAAATACIAAAACAAIAAAAUACIAAAACAAAAAAAVACIAAAAAAAEAAAAWACIAAAABAAEAAAAXACIAAAACAAEAAAAYACIAAAAAAAIAAAAZACIAAAABAAIAAAAaACIAAAACAAIAAAAbACIAAAACAAAAAAAcACIAAAAAAAEAAAAdACIAAAABAAEAAAAeACIAAAACAAEAAAAfACIAAAAAAAIAAAAgACIAAAABAAIAAAAhACIAAAACAAIAAAD//wAAAAAAAAEAAFD//wEAAAABAAEAAFD//wIAAAACAAEAAFD//wMAAAAAAAIAAFD//wQAAAABAAIAAFD//wUAAAACAAIAAFD//wYAAAACAAAAAFD//wcAAAAAAAEAAFD//wgAAAABAAEAAFD//wkAAAACAAEAAFD//woAAAAAAAIAAFD//wsAAAABAAIAAFD//wwAAAACAAIAAFD//w0AAAACAAAAAFD//w4AAAAAAAEAAFD//w8AAAABAAEAAFD//xAAAAACAAEAAFD//xEAAAAAAAIAAFD//xIAAAABAAIAAFD//xMAAAACAAIAAFD//xQAAAACAAAAAFD//xUAAAAAAAEAAFD//xYAAAABAAEAAFD//xcAAAACAAEAAFD//xgAAAAAAAIAAFD//xkAAAABAAIAAFD//xoAAAACAAIAAFD//xsAAAACAAAAAFD//xwAAAAAAAEAAFD//x0AAAABAAEAAFD//x4AAAACAAEAAFD//x8AAAAAAAIAAFD//yAAAAABAAIAAFD//yEAAAACAAIAAFA=")
+tile_set = SubResource("TileSet_jt0kg")
+
 [node name="Player" parent="." instance=ExtResource("1_pla2g")]
-position = Vector2(161, 174)
+position = Vector2(544, 576)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = -64
+limit_top = -64
+limit_right = 1146
+limit_bottom = 1146
 
 [node name="EnemyTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -52,26 +94,27 @@ autostart = true
 curve = SubResource("Curve2D_cj5w0")
 
 [node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath"]
-position = Vector2(-64, -64)
+position = Vector2(-128, -128)
 
-[node name="EnemyBoundaryTop" type="Area2D" parent="."]
+[node name="EnemyBoundary" type="Area2D" parent="."]
 position = Vector2(60, -130)
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBoundaryTop"]
+[node name="BoundaryTop" type="CollisionShape2D" parent="EnemyBoundary"]
+position = Vector2(0, -62)
 shape = SubResource("WorldBoundaryShape2D_p5ihn")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="EnemyBoundaryTop"]
-position = Vector2(-17, 595)
+[node name="BoundaryBottom" type="CollisionShape2D" parent="EnemyBoundary"]
+position = Vector2(-20, 1410)
 shape = SubResource("WorldBoundaryShape2D_0qfqy")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="EnemyBoundaryTop"]
-position = Vector2(-186, 308)
+[node name="BoundaryLeft" type="CollisionShape2D" parent="EnemyBoundary"]
+position = Vector2(-252, 306)
 shape = SubResource("WorldBoundaryShape2D_8tb5v")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="EnemyBoundaryTop"]
-position = Vector2(700, 262)
+[node name="BoundaryRight" type="CollisionShape2D" parent="EnemyBoundary"]
+position = Vector2(1220, 266)
 shape = SubResource("WorldBoundaryShape2D_0056x")
 
 [connection signal="killed" from="Player" to="." method="game_over"]
