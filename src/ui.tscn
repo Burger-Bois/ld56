@@ -132,19 +132,36 @@ flat = true
 stream = ExtResource("7_5y3sd")
 volume_db = -12.0
 
-[node name="ScoreCounter" type="RichTextLabel" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 545.0
-offset_top = 4.0
-offset_right = 638.0
-offset_bottom = 44.0
+[node name="ScoreCounter" type="RichTextLabel" parent="GameOverScreen"]
+offset_left = 389.0
+offset_top = 161.0
+offset_right = 617.0
+offset_bottom = 193.0
+theme_override_font_sizes/normal_font_size = 32
 text = "Score:"
 text_direction = 1
 script = ExtResource("9_w7tn7")
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="GameUI" type="Control" parent="."]
 visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreCounter" type="RichTextLabel" parent="GameUI"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 142.0
+offset_bottom = 24.0
+text = "Score:"
+text_direction = 1
+script = ExtResource("9_w7tn7")
+
+[node name="HealthBar" type="ProgressBar" parent="GameUI"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -161,7 +178,8 @@ value = 100.0
 show_percentage = false
 script = ExtResource("8_x60es")
 
-[node name="PauseMenu" type="PanelContainer" parent="."]
+[node name="PauseMenu" type="PanelContainer" parent="GameUI"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -170,28 +188,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
+[node name="CenterContainer" type="CenterContainer" parent="GameUI/PauseMenu"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameUI/PauseMenu/CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PauseMenu/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="GameUI/PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="ContinueButton" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="GameUI/PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 text = "Continue"
 
-[node name="RestartButton" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+[node name="RestartButton" type="Button" parent="GameUI/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="GameUI/PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Restart"
 
 [connection signal="pressed" from="MainMenu/Button" to="." method="start"]
-[connection signal="pressed" from="GameOverScreen/Button2" to="." method="restart"]
+[connection signal="pressed" from="GameOverScreen/Button2" to="." method="start"]
 [connection signal="pressed" from="GameOverScreen/Button" to="." method="quit"]
-[connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/ContinueButton" to="." method="paused" binds= [false]]
-[connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/RestartButton" to="." method="restart"]
+[connection signal="pressed" from="GameUI/PauseMenu/CenterContainer/VBoxContainer/ContinueButton" to="." method="paused" binds= [false]]
+[connection signal="pressed" from="GameUI/PauseMenu/CenterContainer/VBoxContainer/RestartButton" to="." method="start"]
+[connection signal="pressed" from="GameUI/PauseMenu/CenterContainer/VBoxContainer/MainMenuButton" to="." method="stop"]
