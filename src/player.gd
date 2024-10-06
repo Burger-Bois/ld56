@@ -1,6 +1,8 @@
 class_name Player extends CharacterBody2D
 
 
+signal killed
+
 @export var turn_speed := 0.25
 
 @onready var _left_boot := $LeftBoot as Boot
@@ -59,3 +61,7 @@ func rotate_around_point(point: Vector2, rot: float):
 	var position_delta := -point.rotated(rot) + point
 	rotation += rot
 	position += position_delta
+
+
+func take_damage():
+	killed.emit()
