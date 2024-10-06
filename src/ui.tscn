@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://desq18qgx2qvm"]
+[gd_scene load_steps=11 format=3 uid="uid://desq18qgx2qvm"]
 
 [ext_resource type="Script" path="res://src/ui.gd" id="1_2uf0a"]
 [ext_resource type="Texture2D" uid="uid://cjt0y4xany7pd" path="res://assets/Untitled.png" id="1_fyys5"]
@@ -7,24 +7,42 @@
 [ext_resource type="PackedScene" uid="uid://cjluo6hcxj3aj" path="res://src/music.tscn" id="5_rtldg"]
 [ext_resource type="Texture2D" uid="uid://bvew24qjwmrgh" path="res://assets/game over.png" id="6_lj3qr"]
 [ext_resource type="AudioStream" uid="uid://8rvqi1gpj17p" path="res://assets/gameOver.wav" id="7_5y3sd"]
+[ext_resource type="Script" path="res://src/health_bar.gd" id="8_x60es"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnk1t"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_651ny"]
+bg_color = Color(0, 1, 0.683333, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
 
 [node name="UI" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_2uf0a")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="MainMenu" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 
-[node name="Untitled" type="Sprite2D" parent="Panel"]
+[node name="Untitled" type="Sprite2D" parent="MainMenu"]
 position = Vector2(320, 180)
 texture = ExtResource("1_fyys5")
 
-[node name="Button" type="Button" parent="Panel"]
+[node name="Button" type="Button" parent="MainMenu"]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 245.0
@@ -33,11 +51,11 @@ offset_bottom = 303.0
 icon = ExtResource("2_nqpl4")
 flat = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Panel"]
+[node name="Sprite2D" type="Sprite2D" parent="MainMenu"]
 position = Vector2(312, 105)
 texture = ExtResource("4_qel5u")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MainMenu"]
 layout_mode = 0
 offset_left = 470.0
 offset_top = 7.0
@@ -57,7 +75,7 @@ S to move backwards
 A to lift right foot
 D to lift left foot"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Panel"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="MainMenu"]
 layout_mode = 0
 offset_left = 183.0
 offset_top = 231.0
@@ -77,19 +95,19 @@ Zoe - Programming
 James - Music, Design, Additional Programming
 Tom - Audio Mixing"
 
-[node name="AudioStreamPlayer" parent="Panel" instance=ExtResource("5_rtldg")]
+[node name="AudioStreamPlayer" parent="MainMenu" instance=ExtResource("5_rtldg")]
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="GameOverScreen" type="Panel" parent="."]
 visible = false
 layout_mode = 0
 offset_right = 643.0
 offset_bottom = 365.0
 
-[node name="GameOver" type="Sprite2D" parent="Panel2"]
+[node name="GameOver" type="Sprite2D" parent="GameOverScreen"]
 position = Vector2(320, 180)
 texture = ExtResource("6_lj3qr")
 
-[node name="Button2" type="Button" parent="Panel2"]
+[node name="Button2" type="Button" parent="GameOverScreen"]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 278.0
@@ -97,7 +115,7 @@ offset_right = 190.0
 offset_bottom = 333.0
 flat = true
 
-[node name="Button" type="Button" parent="Panel2"]
+[node name="Button" type="Button" parent="GameOverScreen"]
 layout_mode = 0
 offset_left = 508.0
 offset_top = 273.0
@@ -105,10 +123,10 @@ offset_right = 619.0
 offset_bottom = 334.0
 flat = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Panel2"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameOverScreen"]
 stream = ExtResource("7_5y3sd")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Score" type="RichTextLabel" parent="."]
 visible = false
 layout_mode = 0
 offset_left = 569.0
@@ -117,6 +135,23 @@ offset_right = 638.0
 offset_bottom = 44.0
 text = "Score:"
 
-[connection signal="pressed" from="Panel/Button" to="." method="start"]
-[connection signal="pressed" from="Panel2/Button2" to="." method="restart"]
-[connection signal="pressed" from="Panel2/Button" to="." method="quit"]
+[node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_right = 112.0
+offset_bottom = 27.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_xnk1t")
+theme_override_styles/fill = SubResource("StyleBoxFlat_651ny")
+value = 100.0
+show_percentage = false
+script = ExtResource("8_x60es")
+
+[connection signal="pressed" from="MainMenu/Button" to="." method="start"]
+[connection signal="pressed" from="GameOverScreen/Button2" to="." method="restart"]
+[connection signal="pressed" from="GameOverScreen/Button" to="." method="quit"]

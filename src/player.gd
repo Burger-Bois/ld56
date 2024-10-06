@@ -19,7 +19,7 @@ var _state: State = State.IDLE
 
 
 func _ready():
-	_health = 10
+	set_health(100)
 	SignalBus.enemy_hit.connect(on_enemy_hit)
 	_current_pivot = _left_boot
 
@@ -107,6 +107,7 @@ func set_health(health: int):
 		_health = 100
 	else:
 		_health = health
+	SignalBus.player_health_changed.emit(_health)
 
 func kill():
 	killed.emit()

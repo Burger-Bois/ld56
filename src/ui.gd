@@ -21,29 +21,32 @@ func start():
 	var stage := stageScene.instantiate() as Stage
 	stage.finished.connect(_on_game_over)
 	_game.add_child(stage)
-	$Panel.hide()
-	$Panel2.hide()
-	$Panel/AudioStreamPlayer.stop()
-	$RichTextLabel.show()
+	$MainMenu.hide()
+	$GameOverScreen.hide()
+	$MainMenu/AudioStreamPlayer.stop()
+	$Score.show()
+	$HealthBar.show()
 
 
 
 func _on_game_over(FinishState):
-	print("FUCK!!!!!")
-	$Panel2.show()
-	$Panel2/AudioStreamPlayer.play()
+	$GameOverScreen.show()
+	$GameOverScreen/AudioStreamPlayer.play()
+	$HealthBar.hide()
+
 
 func on_enemy_hit(enemy_hit):
 	score += 1
-	$RichTextLabel.clear()
-	$RichTextLabel.add_text("Score:" + str(score))
+	$Score.clear()
+	$Score.add_text("Score:" + str(score))
+
 
 func quit():
 	get_tree().quit()
 
 
 func restart():
-	$RichTextLabel.clear()
-	$RichTextLabel.add_text("Score:")
-	$Panel2/AudioStreamPlayer.stop()
+	$Score.clear()
+	$Score.add_text("Score:")
+	$GameOverScreen/AudioStreamPlayer.stop()
 	start()
