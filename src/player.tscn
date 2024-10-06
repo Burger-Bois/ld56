@@ -1,21 +1,43 @@
-[gd_scene load_steps=10 format=3 uid="uid://j82506cb8570"]
+[gd_scene load_steps=20 format=3 uid="uid://j82506cb8570"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_4c8sp"]
 [ext_resource type="PackedScene" uid="uid://cws28uf05ad5r" path="res://src/boot.tscn" id="2_v8r4r"]
 [ext_resource type="AudioStream" uid="uid://c48kl7y76ngvy" path="res://assets/ouch-left.wav" id="3_kelq0"]
 [ext_resource type="AudioStream" uid="uid://f7rt2btvucx5" path="res://assets/ouch-right.wav" id="4_sioyy"]
+[ext_resource type="AudioStream" uid="uid://bobuxt2x20kbo" path="res://assets/ouch/ouch1.mp3" id="5_b0jx2"]
 [ext_resource type="AudioStream" uid="uid://cmde8b8s0jpy2" path="res://assets/Splats/body hit with grunt 1.wav" id="5_hkybp"]
 [ext_resource type="AudioStream" uid="uid://c46jrg3u1torb" path="res://assets/Splats/body hit with grunt 2.wav" id="6_581li"]
+[ext_resource type="AudioStream" uid="uid://n8ufnrn1wg1t" path="res://assets/ouch/ouch2.mp3" id="6_758nw"]
+[ext_resource type="AudioStream" uid="uid://b84u6h06b8iay" path="res://assets/ouch/ouch3.mp3" id="7_41uys"]
 [ext_resource type="AudioStream" uid="uid://ch82wlawx6yo0" path="res://assets/Splats/body hit with grunt 3.wav" id="7_dthg7"]
+[ext_resource type="AudioStream" uid="uid://drujvp4akl3b6" path="res://assets/ouch/ouch4.mp3" id="8_yjrr6"]
+[ext_resource type="AudioStream" uid="uid://dqlapgqr6wudr" path="res://assets/ouch/ouch5.mp3" id="9_ors15"]
+[ext_resource type="AudioStream" uid="uid://ds5ad8reascnr" path="res://assets/ouch/ouch6.mp3" id="10_51621"]
+[ext_resource type="AudioStream" uid="uid://bdl42wvymkwqg" path="res://assets/ouch/ouch7.mp3" id="11_wrq68"]
+[ext_resource type="AudioStream" uid="uid://be0kd1p6aw1eu" path="res://assets/ouch/ouch8.mp3" id="12_pefyr"]
+[ext_resource type="AudioStream" uid="uid://ge3wry0celmt" path="res://assets/ouch/ouch9.mp3" id="13_fdhwd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dql0k"]
 size = Vector2(88, 50)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tw3u0"]
+playback_mode = 1
 streams_count = 3
 stream_0/stream = ExtResource("5_hkybp")
 stream_1/stream = ExtResource("6_581li")
 stream_2/stream = ExtResource("7_dthg7")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y3g8c"]
+streams_count = 9
+stream_0/stream = ExtResource("5_b0jx2")
+stream_1/stream = ExtResource("6_758nw")
+stream_2/stream = ExtResource("7_41uys")
+stream_3/stream = ExtResource("8_yjrr6")
+stream_4/stream = ExtResource("9_ors15")
+stream_5/stream = ExtResource("10_51621")
+stream_6/stream = ExtResource("11_wrq68")
+stream_7/stream = ExtResource("12_pefyr")
+stream_8/stream = ExtResource("13_fdhwd")
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -45,11 +67,15 @@ volume_db = -6.0
 [node name="OuchRight" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_sioyy")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BugDeathAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_tw3u0")
 
+[node name="TakeDamageAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_y3g8c")
+volume_db = -11.0
+
 [connection signal="hit" from="LeftBoot" to="." method="take_damage"]
-[connection signal="hit" from="LeftBoot" to="OuchLeft" method="play" unbinds=1]
+[connection signal="hit" from="LeftBoot" to="TakeDamageAudioPlayer" method="play" unbinds=1]
 [connection signal="hit" from="RightBoot" to="." method="take_damage"]
-[connection signal="hit" from="RightBoot" to="OuchRight" method="play" unbinds=1]
+[connection signal="hit" from="RightBoot" to="TakeDamageAudioPlayer" method="play" unbinds=1]
 [connection signal="timeout" from="DazeTimer" to="." method="end_jump"]

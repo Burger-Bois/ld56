@@ -95,7 +95,7 @@ func on_enemy_hit(enemy: Enemy):
 	var new_health = _health + enemy.health_bonus
 	set_health(new_health)
 	print("health: " + str(_health))
-	$AudioStreamPlayer.play()
+	$BugDeathAudioPlayer.play()
 	
 
 
