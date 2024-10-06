@@ -6,6 +6,7 @@ signal finished(state: FinishState)
 @export var linear_enemy_scene: PackedScene
 @export var random_enemy_scene: PackedScene
 
+
 enum FinishState {GAME_OVER}
 
 var max_enemies = 10
