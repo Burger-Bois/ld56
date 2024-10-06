@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgup3bx2ixj7f"]
+[gd_scene load_steps=7 format=3 uid="uid://cufy382dcylq7"]
 
 [ext_resource type="Script" path="res://src/spikey_enemy.gd" id="1_by0dh"]
-[ext_resource type="Texture2D" uid="uid://c3ac58bgb4fex" path="res://assets/spider.png" id="2_5irjr"]
-[ext_resource type="Texture2D" uid="uid://bbbh5qfpoq3uo" path="res://assets/spider 2.png" id="3_qpaxg"]
+[ext_resource type="Texture2D" uid="uid://bqmpmw8b6a44c" path="res://assets/bomb bug.png" id="2_x4565"]
+[ext_resource type="Texture2D" uid="uid://crebjak5p11uc" path="res://assets/bomb bug2.png" id="3_0x2e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbvrk"]
 size = Vector2(32, 32)
@@ -14,10 +14,10 @@ size = Vector2(32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_5irjr")
+"texture": ExtResource("2_x4565")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_qpaxg")
+"texture": ExtResource("3_0x2e3")
 }],
 "loop": true,
 "name": &"default",
@@ -45,7 +45,6 @@ shape = SubResource("RectangleShape2D_s66oi")
 autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0, 0.553808, 0.305833, 1)
 sprite_frames = SubResource("SpriteFrames_y6pag")
 autoplay = "default"
 
