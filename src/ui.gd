@@ -1,5 +1,7 @@
 extends Control
 
+@export var _game: Node
+
 var stageScene = preload("res://src/stage.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -12,13 +14,16 @@ func _process(delta):
 
 
 func start():
-	#var stage := stageScene.instantiate() as Stage
-	#stage.finished.connect(_on_game_over)
-	#$".".get_parent().find_child("game").add_child(stage)
+	if not _game.get_children().is_empty():
+		for child in _game.get_children():
+			child.queue_free()
+
+	var stage := stageScene.instantiate() as Stage
+	stage.finished.connect(_on_game_over)
+	_game.add_child(stage)
 	$Panel.hide()
 	$Panel2.hide()
 	$Panel/AudioStreamPlayer.stop()
-	_on_game_over(Stage.FinishState.GAME_OVER)
 
 
 

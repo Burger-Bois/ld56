@@ -8,4 +8,7 @@ script = ExtResource("1_uo5vg")
 
 [node name="game" type="Node" parent="."]
 
-[node name="ui" parent="." instance=ExtResource("2_qlupu")]
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="ui" parent="UILayer" node_paths=PackedStringArray("_game") instance=ExtResource("2_qlupu")]
+_game = NodePath("../../game")
