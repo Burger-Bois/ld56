@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dx3nwppnbjk0y" path="res://assets/title.png" id="4_qel5u"]
 [ext_resource type="PackedScene" uid="uid://cjluo6hcxj3aj" path="res://src/music.tscn" id="5_rtldg"]
 [ext_resource type="Texture2D" uid="uid://bvew24qjwmrgh" path="res://assets/game over.png" id="6_lj3qr"]
-[ext_resource type="AudioStream" uid="uid://8rvqi1gpj17p" path="res://assets/gameOver.wav" id="7_5y3sd"]
+[ext_resource type="AudioStream" uid="uid://8rvqi1gpj17p" path="res://assets/music/gameOver.wav" id="7_5y3sd"]
 [ext_resource type="Script" path="res://src/health_bar.gd" id="8_x60es"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnk1t"]
