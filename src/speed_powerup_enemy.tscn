@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://jx0os7xl2mql"]
+
+[ext_resource type="Script" path="res://src/speed_powerup_enemy.gd" id="1_v0067"]
+[ext_resource type="Texture2D" uid="uid://c3ac58bgb4fex" path="res://assets/spider.png" id="2_m8u6p"]
+[ext_resource type="Texture2D" uid="uid://bbbh5qfpoq3uo" path="res://assets/spider 2.png" id="3_tf8kl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbvrk"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s66oi"]
+size = Vector2(32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y6pag"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_m8u6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tf8kl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SpeedPowerUpEnemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_v0067")
+metadata/_edit_vertical_guides_ = [-90.0]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bbvrk")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_s66oi")
+
+[node name="ChangeDirectionTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0.594992, 0.538929, 1)
+rotation = 1.57079
+sprite_frames = SubResource("SpriteFrames_y6pag")
+autoplay = "default"
+
+[connection signal="area_entered" from="Hitbox" to="." method="remove" unbinds=1]
+[connection signal="timeout" from="ChangeDirectionTimer" to="." method="_on_change_direction_timer_timeout"]

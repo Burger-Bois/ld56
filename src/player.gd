@@ -16,6 +16,7 @@ enum State {IDLE, JUMPING, DAZED}
 
 var _current_pivot: Node2D
 var _health
+var _default_turn_speed
 
 var _state: State = State.IDLE
 
@@ -23,6 +24,7 @@ var _invincible := false
 
 
 func _ready():
+	_default_turn_speed = turn_speed
 	set_health(100)
 	SignalBus.enemy_hit.connect(on_enemy_hit)
 	_current_pivot = _left_boot
@@ -107,6 +109,8 @@ func on_enemy_hit(enemy: Enemy):
 	$BugDeathAudioPlayer.play()
 	if enemy is SpikeyEnemy:
 		$TakeDamageAudioPlayer.play()
+	if enemy is SpeedPowerUpEnemy:
+		turn_speed = _default_turn_speed * 2
 
 
 func set_health(health: int):

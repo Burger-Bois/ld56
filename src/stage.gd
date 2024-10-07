@@ -10,6 +10,8 @@ signal finished(state: FinishState)
 @export var spikey_enemy_scene: PackedScene
 @export var following_enemy_scene: PackedScene
 
+@export var speed_powerup_scene: PackedScene
+
 
 enum FinishState {GAME_OVER}
 
@@ -49,12 +51,14 @@ func spawn():
 		
 func get_enemy_type():
 	var enemy_select = randi_range(1, 100)
-	if enemy_select <= 25:
+	if enemy_select <= 20:
 		return linear_enemy_scene
-	elif enemy_select <= 60:
+	elif enemy_select <= 55:
 		return random_enemy_scene
-	elif enemy_select <= 90:
+	elif enemy_select <= 87:
 		return spikey_enemy_scene
+	elif enemy_select <= 90:
+		return speed_powerup_scene
 	else:
 		return following_enemy_scene
 
