@@ -1,4 +1,4 @@
-extends Enemy
+class_name SpikeyEnemy extends Enemy
 
 func _ready() -> void:
 	speed = 90

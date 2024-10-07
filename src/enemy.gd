@@ -1,6 +1,4 @@
-extends CharacterBody2D
-
-class_name Enemy
+class_name Enemy extends CharacterBody2D
 
 @export var direction := 0.0:
 	set=set_direction

@@ -1,9 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://j82506cb8570"]
+[gd_scene load_steps=22 format=3 uid="uid://j82506cb8570"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_4c8sp"]
 [ext_resource type="PackedScene" uid="uid://cws28uf05ad5r" path="res://src/boot.tscn" id="2_v8r4r"]
-[ext_resource type="AudioStream" uid="uid://c48kl7y76ngvy" path="res://assets/ouch-left.wav" id="3_kelq0"]
-[ext_resource type="AudioStream" uid="uid://f7rt2btvucx5" path="res://assets/ouch-right.wav" id="4_sioyy"]
 [ext_resource type="AudioStream" uid="uid://bobuxt2x20kbo" path="res://assets/ouch/ouch1.mp3" id="5_b0jx2"]
 [ext_resource type="AudioStream" uid="uid://cmde8b8s0jpy2" path="res://assets/Splats/body hit with grunt 1.wav" id="5_hkybp"]
 [ext_resource type="AudioStream" uid="uid://c46jrg3u1torb" path="res://assets/Splats/body hit with grunt 2.wav" id="6_581li"]
@@ -68,13 +66,6 @@ scale = Vector2(-1, 1)
 
 [node name="DazeTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="OuchLeft" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_kelq0")
-volume_db = -6.0
-
-[node name="OuchRight" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_sioyy")
 
 [node name="BugDeathAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_tw3u0")

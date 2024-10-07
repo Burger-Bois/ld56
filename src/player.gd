@@ -96,6 +96,10 @@ func on_enemy_hit(enemy: Enemy):
 	set_health(new_health)
 	print("health: " + str(_health))
 	$BugDeathAudioPlayer.play()
+	if enemy is SpikeyEnemy:
+		$TakeDamageAudioPlayer.play()
+		
+		
 	
 
 
