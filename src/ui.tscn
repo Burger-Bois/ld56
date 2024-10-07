@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://desq18qgx2qvm"]
+[gd_scene load_steps=19 format=3 uid="uid://desq18qgx2qvm"]
 
 [ext_resource type="Script" path="res://src/ui.gd" id="1_2uf0a"]
 [ext_resource type="Texture2D" uid="uid://cjt0y4xany7pd" path="res://assets/Untitled.png" id="1_fyys5"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://8rvqi1gpj17p" path="res://assets/music/gameOver.wav" id="7_5y3sd"]
 [ext_resource type="Script" path="res://src/health_bar.gd" id="8_x60es"]
 [ext_resource type="Script" path="res://src/score_counter.gd" id="9_w7tn7"]
+[ext_resource type="Script" path="res://src/daze_timer_bar.gd" id="11_uouvt"]
 
 [sub_resource type="Theme" id="Theme_es22y"]
 default_font = ExtResource("1_xkc3i")
@@ -33,6 +34,18 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p68m0"]
+bg_color = Color(0.6, 0.6, 0.6, 0.396078)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2bxg"]
+bg_color = Color(0.74978, 0.74978, 0.74978, 1)
+corner_radius_top_left = 3
+corner_radius_bottom_left = 3
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -208,8 +221,8 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -112.0
-offset_right = 112.0
+offset_left = -113.0
+offset_right = 113.0
 offset_bottom = 27.0
 grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -219,6 +232,27 @@ step = 1.0
 value = 100.0
 show_percentage = false
 script = ExtResource("8_x60es")
+
+[node name="DazeTimerBar" type="ProgressBar" parent="GameUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -154.0
+offset_right = 112.0
+offset_bottom = -151.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_p68m0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o2bxg")
+max_value = 1.0
+value = 0.5
+show_percentage = false
+script = ExtResource("11_uouvt")
 
 [node name="PauseMenu" type="PanelContainer" parent="GameUI"]
 unique_name_in_owner = true

@@ -3,12 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://j82506cb8570" path="res://src/player.tscn" id="1_pla2g"]
 [ext_resource type="Script" path="res://src/stage.gd" id="1_x0yvg"]
 [ext_resource type="PackedScene" uid="uid://dm32023ha7bv" path="res://src/linear_enemy.tscn" id="2_7mh81"]
-[ext_resource type="PackedScene" uid="uid://jnra6xexm56q" path="res://src/random_enemy.tscn" id="3_labhp"]
 [ext_resource type="Texture2D" uid="uid://rkedicfg67o5" path="res://assets/background-grass.png" id="4_0kh3u"]
 [ext_resource type="PackedScene" uid="uid://cufy382dcylq7" path="res://src/spikey_enemy.tscn" id="4_hw7w1"]
 [ext_resource type="Texture2D" uid="uid://b6xf6xxidqbrk" path="res://assets/fence.png" id="5_hbomb"]
-[ext_resource type="PackedScene" uid="uid://cv6q1tx4h8a25" path="res://src/following_enemy.tscn" id="5_x2bp2"]
-[ext_resource type="PackedScene" uid="uid://jx0os7xl2mql" path="res://src/speed_powerup_enemy.tscn" id="6_aomor"]
+[ext_resource type="PackedScene" path="res://src/following_enemy.tscn" id="5_x2bp2"]
+[ext_resource type="PackedScene" uid="uid://dajyl7iatnlx4" path="res://src/speed_powerup_enemy.tscn" id="6_amspq"]
+[ext_resource type="PackedScene" uid="uid://jx0os7xl2mql" path="res://src/random_enemy.tscn" id="6_aomor"]
 [ext_resource type="AudioStream" uid="uid://7ysekthjvnh5" path="res://assets/music/bugloop.wav" id="8_x6t8w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bxj2c"]
@@ -69,10 +69,10 @@ normal = Vector2(-1, 0)
 script = ExtResource("1_x0yvg")
 player = NodePath("Player")
 linear_enemy_scene = ExtResource("2_7mh81")
-random_enemy_scene = ExtResource("3_labhp")
+random_enemy_scene = ExtResource("6_aomor")
 spikey_enemy_scene = ExtResource("4_hw7w1")
 following_enemy_scene = ExtResource("5_x2bp2")
-speed_powerup_scene = ExtResource("6_aomor")
+speed_powerup_scene = ExtResource("6_amspq")
 metadata/_edit_vertical_guides_ = [1198.0]
 metadata/_edit_horizontal_guides_ = [1146.0]
 

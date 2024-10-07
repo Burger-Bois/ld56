@@ -33,6 +33,11 @@ func _ready():
 
 
 func _process(delta):
+	if _state == State.DAZED:
+		SignalBus.player_dazed_changed.emit(
+			_daze_timer.time_left,
+			_daze_timer.wait_time)
+	
 	if _state == State.IDLE and Input.is_action_just_pressed("jump"):
 		jump()
 	
@@ -159,6 +164,7 @@ func _jump_finished():
 
 func end_jump():
 	_state = State.IDLE
+	SignalBus.player_dazed_changed.emit(0, _daze_timer.wait_time)
 
 
 func _on_speed_powerup_timer_timeout() -> void:
