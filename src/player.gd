@@ -30,6 +30,8 @@ func _ready():
 	set_health(100)
 	SignalBus.enemy_hit.connect(on_enemy_hit)
 	_current_pivot = _left_boot
+	# Reset daze bar
+	SignalBus.player_dazed_changed.emit(0, _daze_timer.wait_time)
 
 
 func _process(delta):
