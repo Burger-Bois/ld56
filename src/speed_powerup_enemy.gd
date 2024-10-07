@@ -1,7 +1,7 @@
 class_name SpeedPowerUpEnemy extends Enemy
 
 func _ready() -> void:
-	speed = 45
+	speed = 50
 	damage = 0
 	health_bonus = 0
 

@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dajyl7iatnlx4"]
+[gd_scene load_steps=7 format=3 uid="uid://jx0os7xl2mql"]
 
 [ext_resource type="Script" path="res://src/speed_powerup_enemy.gd" id="1_v0067"]
-[ext_resource type="Texture2D" uid="uid://c3ac58bgb4fex" path="res://assets/spider.png" id="2_m8u6p"]
-[ext_resource type="Texture2D" uid="uid://bbbh5qfpoq3uo" path="res://assets/spider 2.png" id="3_tf8kl"]
+[ext_resource type="Texture2D" uid="uid://b85pe5bhejwoa" path="res://assets/speed-powerup-bug1.png" id="2_4tamv"]
+[ext_resource type="Texture2D" uid="uid://b23f7evv84bd6" path="res://assets/speed-powerup-bug2.png" id="3_56pm5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbvrk"]
 size = Vector2(32, 32)
@@ -10,14 +10,14 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s66oi"]
 size = Vector2(32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_y6pag"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_p4wfe"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_m8u6p")
+"texture": ExtResource("2_4tamv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_tf8kl")
+"texture": ExtResource("3_56pm5")
 }],
 "loop": true,
 "name": &"default",
@@ -47,7 +47,7 @@ autostart = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0, 0.594992, 0.538929, 1)
 rotation = 1.57079
-sprite_frames = SubResource("SpriteFrames_y6pag")
+sprite_frames = SubResource("SpriteFrames_p4wfe")
 autoplay = "default"
 
 [connection signal="area_entered" from="Hitbox" to="." method="remove" unbinds=1]
