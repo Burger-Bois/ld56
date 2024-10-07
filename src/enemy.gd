@@ -7,10 +7,14 @@ class_name Enemy extends CharacterBody2D
 var damage = 10
 var health_bonus = 5
 
+var _dead := false
+
 
 func hit():
-	SignalBus.emit_signal("enemy_hit", self)
-	queue_free()
+	if not _dead:
+		_dead = true
+		SignalBus.emit_signal("enemy_hit", self)
+		queue_free()
 
 
 func remove():
