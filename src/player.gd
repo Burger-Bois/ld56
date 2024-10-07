@@ -9,6 +9,7 @@ signal killed
 @onready var _left_boot := $LeftBoot as Boot
 @onready var _right_boot := $RightBoot as Boot
 @onready var _daze_timer := $DazeTimer as Timer
+@onready var _invincibility_timer := $InvincibilityTimer as Timer
 @onready var _shockwave_animations := $AnimationPlayer as AnimationPlayer
 
 enum State {IDLE, JUMPING, DAZED}
@@ -17,6 +18,8 @@ var _current_pivot: Node2D
 var _health
 
 var _state: State = State.IDLE
+
+var _invincible := false
 
 
 func _ready():
@@ -87,19 +90,23 @@ func rotate_around_point(point: Vector2, rot: float):
 
 
 func take_damage(enemy: Enemy):
+	if _invincible:
+		return
+	
 	var new_health = _health - enemy.damage
 	set_health(new_health)
-	print("health: " + str(_health))
 	
+	$TakeDamageAudioPlayer.play()
+	_invincible = true
+	_invincibility_timer.start()
+
 
 func on_enemy_hit(enemy: Enemy):
 	var new_health = _health + enemy.health_bonus
 	set_health(new_health)
-	print("health: " + str(_health))
 	$BugDeathAudioPlayer.play()
 	if enemy is SpikeyEnemy:
 		$TakeDamageAudioPlayer.play()
-	
 
 
 func set_health(health: int):
