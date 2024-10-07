@@ -119,7 +119,7 @@ theme_override_colors/default_color = Color(0.237539, 0.237539, 0.237539, 1)
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "[center]
-John - Programming      Zoe - Programming      James - Music, Programming        Toby - Voice acting      Tom - Audio Mixing
+John - Programming, Art    Zoe - Programming, Art    James - Music, Art Programming    Toby - Voice acting, QA    Tom - Music, Audio Mixing, Art
 Font - Peaberry Pixel <https://emhuo.itch.io/peaberry-pixel-font>"
 
 [node name="AudioStreamPlayer" parent="MainMenu" instance=ExtResource("5_rtldg")]
