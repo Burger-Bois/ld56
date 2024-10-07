@@ -109,7 +109,8 @@ _data = {
 "shockwave": SubResource("Animation_i5ntu")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8e5hp"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_pqqvw"]
+radius = 24.5
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -169,7 +170,7 @@ script = ExtResource("18_3famf")
 position = Vector2(0, 10)
 rotation = 1.5708
 scale = Vector2(12, 12)
-shape = SubResource("CapsuleShape2D_8e5hp")
+shape = SubResource("CircleShape2D_pqqvw")
 debug_color = Color(0.609, 0.487, 0.625, 0.108)
 
 [connection signal="hit" from="LeftBoot" to="." method="take_damage"]
