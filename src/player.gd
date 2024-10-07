@@ -98,8 +98,6 @@ func on_enemy_hit(enemy: Enemy):
 	$BugDeathAudioPlayer.play()
 	if enemy is SpikeyEnemy:
 		$TakeDamageAudioPlayer.play()
-		
-		
 	
 
 

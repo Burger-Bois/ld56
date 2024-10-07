@@ -1,9 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://j82506cb8570"]
+[gd_scene load_steps=21 format=3 uid="uid://j82506cb8570"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_4c8sp"]
 [ext_resource type="PackedScene" uid="uid://cws28uf05ad5r" path="res://src/boot.tscn" id="2_v8r4r"]
 [ext_resource type="AudioStream" uid="uid://bobuxt2x20kbo" path="res://assets/ouch/ouch1.mp3" id="5_b0jx2"]
-[ext_resource type="AudioStream" uid="uid://cmde8b8s0jpy2" path="res://assets/Splats/body hit with grunt 1.wav" id="5_hkybp"]
 [ext_resource type="AudioStream" uid="uid://c46jrg3u1torb" path="res://assets/Splats/body hit with grunt 2.wav" id="6_581li"]
 [ext_resource type="AudioStream" uid="uid://n8ufnrn1wg1t" path="res://assets/ouch/ouch2.mp3" id="6_758nw"]
 [ext_resource type="AudioStream" uid="uid://b84u6h06b8iay" path="res://assets/ouch/ouch3.mp3" id="7_41uys"]
@@ -23,10 +22,9 @@ size = Vector2(88, 50)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tw3u0"]
 playback_mode = 1
-streams_count = 3
-stream_0/stream = ExtResource("5_hkybp")
-stream_1/stream = ExtResource("6_581li")
-stream_2/stream = ExtResource("7_dthg7")
+streams_count = 2
+stream_0/stream = ExtResource("6_581li")
+stream_1/stream = ExtResource("7_dthg7")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y3g8c"]
 streams_count = 9
