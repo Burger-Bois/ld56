@@ -108,7 +108,6 @@ Tom - Audio Mixing"
 [node name="AudioStreamPlayer" parent="MainMenu" instance=ExtResource("5_rtldg")]
 
 [node name="GameOverScreen" type="Panel" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 643.0
 offset_bottom = 365.0
@@ -178,7 +177,7 @@ offset_bottom = 337.0
 focus_neighbor_left = NodePath("../RestartButton")
 focus_previous = NodePath("../RestartButton")
 toggle_mode = true
-text = "Quit"
+text = "Main Menu"
 flat = true
 
 [node name="GameUI" type="Control" parent="."]
@@ -259,7 +258,7 @@ text = "Main Menu"
 
 [connection signal="pressed" from="MainMenu/Button" to="." method="start"]
 [connection signal="pressed" from="GameOverScreen/RestartButton" to="." method="start"]
-[connection signal="pressed" from="GameOverScreen/QuitButton" to="." method="quit"]
+[connection signal="pressed" from="GameOverScreen/QuitButton" to="." method="stop"]
 [connection signal="pressed" from="GameUI/PauseMenu/CenterContainer/VBoxContainer/ContinueButton" to="." method="paused" binds= [false]]
 [connection signal="pressed" from="GameUI/PauseMenu/CenterContainer/VBoxContainer/RestartButton" to="." method="start"]
 [connection signal="pressed" from="GameUI/PauseMenu/CenterContainer/VBoxContainer/MainMenuButton" to="." method="stop"]
