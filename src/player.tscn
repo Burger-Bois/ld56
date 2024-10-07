@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://j82506cb8570"]
+[gd_scene load_steps=26 format=3 uid="uid://j82506cb8570"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_4c8sp"]
+[ext_resource type="Texture2D" uid="uid://c3ie1xxbu3ab2" path="res://assets/shockwave.png" id="2_454rn"]
 [ext_resource type="PackedScene" uid="uid://cws28uf05ad5r" path="res://src/boot.tscn" id="2_v8r4r"]
 [ext_resource type="AudioStream" uid="uid://bobuxt2x20kbo" path="res://assets/ouch/ouch1.mp3" id="5_b0jx2"]
 [ext_resource type="AudioStream" uid="uid://c46jrg3u1torb" path="res://assets/Splats/body hit with grunt 2.wav" id="6_581li"]
@@ -44,12 +45,80 @@ stream_0/stream = ExtResource("17_mol4s")
 stream_1/stream = ExtResource("18_pttoo")
 stream_2/stream = ExtResource("19_nyudl")
 
+[sub_resource type="Animation" id="Animation_d2d33"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shockwave:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shockwave:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j6hbx"]
+_data = {
+"RESET": SubResource("Animation_d2d33")
+}
+
+[sub_resource type="Animation" id="Animation_i5ntu"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shockwave:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.2),
+"transitions": PackedFloat32Array(0.594604, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2.3, 2.3), Vector2(2.5, 2.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shockwave:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.34902), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_73hsd"]
+_data = {
+"shockwave": SubResource("Animation_i5ntu")
+}
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 0
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_4c8sp")
+
+[node name="Shockwave" type="Sprite2D" parent="."]
+position = Vector2(0, 10)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_454rn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
@@ -75,6 +144,12 @@ volume_db = -11.0
 [node name="JumpAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_kkfpk")
 volume_db = -8.748
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j6hbx"),
+"shockwave": SubResource("AnimationLibrary_73hsd")
+}
 
 [connection signal="hit" from="LeftBoot" to="." method="take_damage"]
 [connection signal="hit" from="LeftBoot" to="TakeDamageAudioPlayer" method="play" unbinds=1]

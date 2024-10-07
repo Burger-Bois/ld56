@@ -9,6 +9,7 @@ signal killed
 @onready var _left_boot := $LeftBoot as Boot
 @onready var _right_boot := $RightBoot as Boot
 @onready var _daze_timer := $DazeTimer as Timer
+@onready var _shockwave_animations := $AnimationPlayer as AnimationPlayer
 
 enum State {IDLE, JUMPING, DAZED}
 
@@ -129,6 +130,7 @@ func _jump_finished():
 	_left_boot.jump_finished.disconnect(_jump_finished)
 	_state = State.DAZED
 	_daze_timer.start()
+	_shockwave_animations.play("shockwave/shockwave")
 
 
 func end_jump():

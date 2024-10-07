@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cws28uf05ad5r"]
+[gd_scene load_steps=17 format=3 uid="uid://cws28uf05ad5r"]
 
 [ext_resource type="Script" path="res://src/boot.gd" id="2_1ylds"]
+[ext_resource type="Texture2D" uid="uid://c3ie1xxbu3ab2" path="res://assets/shockwave.png" id="2_bvii1"]
 [ext_resource type="Texture2D" uid="uid://b2ggf8dmrc7fj" path="res://assets/boot.png" id="2_y1pjh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dig0s"]
@@ -188,8 +189,74 @@ _data = {
 "stomp_ready": SubResource("Animation_glt32")
 }
 
+[sub_resource type="Animation" id="Animation_4qnne"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shockwave:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shockwave:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rwcjp"]
+resource_name = "shockwave"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shockwave:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2.5, 2.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shockwave:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.5),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Color(0.43134, 0.43134, 0.43134, 0.509804), Color(0.431373, 0.431373, 0.431373, 0.509804), Color(0.431373, 0.431373, 0.431373, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_onge0"]
+_data = {
+"RESET": SubResource("Animation_4qnne"),
+"shockwave": SubResource("Animation_rwcjp")
+}
+
 [node name="Boot" type="Node2D"]
 script = ExtResource("2_1ylds")
+
+[node name="Shockwave" type="Sprite2D" parent="."]
+position = Vector2(4, 8)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_bvii1")
 
 [node name="DamageBox" type="Area2D" parent="."]
 position = Vector2(4, 8)
@@ -233,6 +300,11 @@ shape = SubResource("RectangleShape2D_bk0e1")
 libraries = {
 "": SubResource("AnimationLibrary_jaq71"),
 "boot": SubResource("AnimationLibrary_2hui1")
+}
+
+[node name="ShockwaveAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_onge0")
 }
 
 [connection signal="body_entered" from="DamageBox" to="." method="add_damage_box_enemy"]
