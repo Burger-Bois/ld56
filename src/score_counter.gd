@@ -6,4 +6,4 @@ func _ready():
 
 
 func update_value(value: int):
-	text = "Score:" + str(value)
+	text = "Score: " + str(value)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bfa2xbiiyaxkl"]
+[gd_scene load_steps=22 format=4 uid="uid://bfa2xbiiyaxkl"]
 
 [ext_resource type="PackedScene" uid="uid://j82506cb8570" path="res://src/player.tscn" id="1_pla2g"]
 [ext_resource type="Script" path="res://src/stage.gd" id="1_x0yvg"]
@@ -7,9 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://rkedicfg67o5" path="res://assets/background-grass.png" id="4_0kh3u"]
 [ext_resource type="PackedScene" uid="uid://cufy382dcylq7" path="res://src/spikey_enemy.tscn" id="4_hw7w1"]
 [ext_resource type="Texture2D" uid="uid://b6xf6xxidqbrk" path="res://assets/fence.png" id="5_hbomb"]
-[ext_resource type="PackedScene" uid="uid://cv6q1tx4h8a25" path="res://src/following_enemy.tscn" id="5_x2bp2"]
+[ext_resource type="PackedScene" path="res://src/following_enemy.tscn" id="5_x2bp2"]
 [ext_resource type="PackedScene" uid="uid://jx0os7xl2mql" path="res://src/speed_powerup_enemy.tscn" id="6_amspq"]
 [ext_resource type="AudioStream" uid="uid://7ysekthjvnh5" path="res://assets/music/bugloop.wav" id="8_x6t8w"]
+[ext_resource type="Script" path="res://src/blood_splats.gd" id="11_r7t2e"]
+[ext_resource type="PackedScene" uid="uid://cfwhfjf7h0ja4" path="res://src/blood_splat.tscn" id="12_7n8xl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bxj2c"]
 texture = ExtResource("4_0kh3u")
@@ -140,6 +142,10 @@ wait_time = 12.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_x6t8w")
 volume_db = -11.244
+
+[node name="BloodSplats" type="Node2D" parent="."]
+script = ExtResource("11_r7t2e")
+blood_splat_scene = ExtResource("12_7n8xl")
 
 [connection signal="killed" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]

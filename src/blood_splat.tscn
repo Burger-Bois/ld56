@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfwhfjf7h0ja4"]
+
+[ext_resource type="Texture2D" uid="uid://y883gtyjucx4" path="res://src/blood_splat_atlas.tres" id="1_sob0g"]
+[ext_resource type="Script" path="res://src/bloodsplat.gd" id="2_t2k4f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsdjk"]
+atlas = ExtResource("1_sob0g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkg5x"]
+atlas = ExtResource("1_sob0g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vnjd"]
+atlas = ExtResource("1_sob0g")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsksx"]
+atlas = ExtResource("1_sob0g")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp788"]
+atlas = ExtResource("1_sob0g")
+region = Rect2(32, 32, 32, 32)
+
+[node name="BloodSplat" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.352941)
+texture = SubResource("AtlasTexture_fsdjk")
+script = ExtResource("2_t2k4f")
+textures = Array[Texture2D]([SubResource("AtlasTexture_jkg5x"), SubResource("AtlasTexture_0vnjd"), SubResource("AtlasTexture_dsksx"), SubResource("AtlasTexture_mp788")])
