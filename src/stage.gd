@@ -5,13 +5,18 @@ signal finished(state: FinishState)
 
 @export var player: Player
 
+# Enemies
 @export var linear_enemy_scene: PackedScene
 @export var random_enemy_scene: PackedScene
 @export var spikey_enemy_scene: PackedScene
 @export var following_enemy_scene: PackedScene
 
+# Powerups
 @export var speed_powerup_scene: PackedScene
 @export var blast_powerup_scene: PackedScene
+
+# Bosses
+@export var centimantis: PackedScene
 
 
 enum FinishState {GAME_OVER}
@@ -21,6 +26,8 @@ const DEFAULT_ENEMIES = 20
 var _difficulty = 1
 var max_enemies
 var enemy_count
+
+var _centimantis_spawns := 1
 
 var rng = RandomNumberGenerator.new()
 
@@ -49,7 +56,19 @@ func spawn():
 		if enemy is FollowingEnemy:
 			enemy._player = player
 		add_child(enemy)
-		#
+
+
+func spawn_boss():
+	for i in range(_centimantis_spawns):
+		var enemy_spawn_location = $EnemyPath/EnemySpawnLocation
+		enemy_spawn_location.progress_ratio = randf()
+		var boss := centimantis.instantiate() as CentimantisManager
+		boss.follow_target = player
+		boss.position = enemy_spawn_location.position
+		add_child(boss)
+	_centimantis_spawns += 1
+
+
 func get_enemy_type():
 	var enemy_select = randi_range(1, 100)
 	if enemy_select <= 20:
@@ -86,4 +105,3 @@ func _on_enemy_timer_timeout() -> void:
 func _on_difficulty_timer_timeout() -> void:
 	_difficulty += 1
 	max_enemies = DEFAULT_ENEMIES * _difficulty
-	print("Max enemies set to " + str(max_enemies))

@@ -1,0 +1,126 @@
+[gd_scene load_steps=13 format=3 uid="uid://bcgnlp5mcexai"]
+
+[ext_resource type="Script" path="res://src/centimantis_manager.gd" id="1_eklbf"]
+[ext_resource type="Script" path="res://src/centimantis.gd" id="1_lutcc"]
+[ext_resource type="Texture2D" uid="uid://bqbvsr0unogeh" path="res://assets/centimantis.png" id="1_xjmw6"]
+[ext_resource type="Script" path="res://src/centimantis_follow.gd" id="2_fn6hw"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jkho3"]
+load_path = "res://.godot/imported/centimantis.png-c9a8ec60a2feca06aa04609a7693215e.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb4x0"]
+atlas = SubResource("CompressedTexture2D_jkho3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tgwxa"]
+radius = 28.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24aga"]
+atlas = ExtResource("1_xjmw6")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytrqt"]
+atlas = ExtResource("1_xjmw6")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qwlr4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24aga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytrqt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bm4gi"]
+size = Vector2(60, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6mhl"]
+atlas = ExtResource("1_xjmw6")
+region = Rect2(128, 0, 64, 64)
+
+[node name="Centimantis" type="Node2D"]
+script = ExtResource("1_eklbf")
+
+[node name="Head" type="CharacterBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_lutcc")
+
+[node name="HeadSprite" type="Sprite2D" parent="Head"]
+rotation = 3.14159
+texture = SubResource("AtlasTexture_rb4x0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+position = Vector2(-5, 0)
+shape = SubResource("CircleShape2D_tgwxa")
+
+[node name="Body" type="CharacterBody2D" parent="." node_paths=PackedStringArray("follow_target")]
+position = Vector2(-63, 0)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_fn6hw")
+follow_target = NodePath("../Head")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Body"]
+rotation = 3.14159
+sprite_frames = SubResource("SpriteFrames_qwlr4")
+autoplay = "default"
+frame_progress = 0.409228
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+shape = SubResource("RectangleShape2D_bm4gi")
+
+[node name="Body2" type="CharacterBody2D" parent="." node_paths=PackedStringArray("follow_target")]
+position = Vector2(-127, 0)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_fn6hw")
+follow_target = NodePath("../Body")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Body2"]
+rotation = 3.14159
+sprite_frames = SubResource("SpriteFrames_qwlr4")
+autoplay = "default"
+frame_progress = 0.117234
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body2"]
+shape = SubResource("RectangleShape2D_bm4gi")
+
+[node name="Body3" type="CharacterBody2D" parent="." node_paths=PackedStringArray("follow_target")]
+position = Vector2(-191, 0)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_fn6hw")
+follow_target = NodePath("../Body2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Body3"]
+rotation = 3.14159
+sprite_frames = SubResource("SpriteFrames_qwlr4")
+autoplay = "default"
+frame_progress = 0.117234
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body3"]
+shape = SubResource("RectangleShape2D_bm4gi")
+
+[node name="Tail" type="CharacterBody2D" parent="." node_paths=PackedStringArray("follow_target")]
+position = Vector2(-255, 0)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_fn6hw")
+follow_target = NodePath("../Body3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tail"]
+rotation = 3.14159
+texture = SubResource("AtlasTexture_n6mhl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tail"]
+shape = SubResource("RectangleShape2D_bm4gi")
+
+[node name="FleeTimer" type="Timer" parent="."]
+one_shot = true

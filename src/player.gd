@@ -102,12 +102,13 @@ func take_damage(enemy: Enemy):
 	if _invincible:
 		return
 	
-	var new_health = _health - enemy.damage
-	set_health(new_health)
-	
-	$TakeDamageAudioPlayer.play()
-	_invincible = true
-	_invincibility_timer.start()
+	if enemy.damage > 0:
+		var new_health = _health - enemy.damage
+		set_health(new_health)
+		
+		$TakeDamageAudioPlayer.play()
+		_invincible = true
+		_invincibility_timer.start()
 
 
 func on_enemy_hit(enemy: Enemy):

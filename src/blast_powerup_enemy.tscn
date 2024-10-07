@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://pbcktr38b6gm"]
+[gd_scene load_steps=10 format=3 uid="uid://b7de8qy5dy73d"]
 
 [ext_resource type="Script" path="res://src/blast_powerup_enemy.gd" id="1_2knjm"]
-[ext_resource type="Texture2D" uid="uid://b85pe5bhejwoa" path="res://assets/speed-powerup-bug1.png" id="2_d4hvg"]
-[ext_resource type="Texture2D" uid="uid://b23f7evv84bd6" path="res://assets/speed-powerup-bug2.png" id="3_ko13i"]
+[ext_resource type="Texture2D" uid="uid://b7aj52q6qckqi" path="res://assets/balloonBug-Sheet.png" id="2_k6y2j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbvrk"]
 size = Vector2(32, 32)
@@ -10,14 +9,36 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s66oi"]
 size = Vector2(32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8y3c"]
+atlas = ExtResource("2_k6y2j")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgwoy"]
+atlas = ExtResource("2_k6y2j")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv2qk"]
+atlas = ExtResource("2_k6y2j")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk7is"]
+atlas = ExtResource("2_k6y2j")
+region = Rect2(96, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_p4wfe"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_d4hvg")
+"texture": SubResource("AtlasTexture_k8y3c")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_ko13i")
+"texture": SubResource("AtlasTexture_mgwoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nv2qk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dk7is")
 }],
 "loop": true,
 "name": &"default",
@@ -45,7 +66,6 @@ shape = SubResource("RectangleShape2D_s66oi")
 autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.316483, 0.145569, 0.41011, 1)
 rotation = 1.57079
 sprite_frames = SubResource("SpriteFrames_p4wfe")
 autoplay = "default"
