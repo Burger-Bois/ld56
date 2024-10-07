@@ -119,6 +119,7 @@ func jump():
 	_state = State.JUMPING
 	_left_boot.state = Boot.State.JUMPING
 	_right_boot.state = Boot.State.JUMPING
+	$JumpAudioPlayer.play()
 	_left_boot.jump_finished.connect(_jump_finished)
 
 

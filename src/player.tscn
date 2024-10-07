@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://j82506cb8570"]
+[gd_scene load_steps=24 format=3 uid="uid://j82506cb8570"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_4c8sp"]
 [ext_resource type="PackedScene" uid="uid://cws28uf05ad5r" path="res://src/boot.tscn" id="2_v8r4r"]
@@ -16,6 +16,9 @@
 [ext_resource type="AudioStream" uid="uid://bdl42wvymkwqg" path="res://assets/ouch/ouch7.mp3" id="11_wrq68"]
 [ext_resource type="AudioStream" uid="uid://be0kd1p6aw1eu" path="res://assets/ouch/ouch8.mp3" id="12_pefyr"]
 [ext_resource type="AudioStream" uid="uid://ge3wry0celmt" path="res://assets/ouch/ouch9.mp3" id="13_fdhwd"]
+[ext_resource type="AudioStream" uid="uid://n3o0g3x2bty7" path="res://assets/jump/jump1.mp3" id="17_mol4s"]
+[ext_resource type="AudioStream" uid="uid://c2awonmkocmgn" path="res://assets/jump/jump2.mp3" id="18_pttoo"]
+[ext_resource type="AudioStream" uid="uid://5y1ieh73jgdo" path="res://assets/jump/jump3.mp3" id="19_nyudl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dql0k"]
 size = Vector2(88, 50)
@@ -38,6 +41,12 @@ stream_5/stream = ExtResource("10_51621")
 stream_6/stream = ExtResource("11_wrq68")
 stream_7/stream = ExtResource("12_pefyr")
 stream_8/stream = ExtResource("13_fdhwd")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kkfpk"]
+streams_count = 3
+stream_0/stream = ExtResource("17_mol4s")
+stream_1/stream = ExtResource("18_pttoo")
+stream_2/stream = ExtResource("19_nyudl")
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -73,6 +82,10 @@ stream = SubResource("AudioStreamRandomizer_tw3u0")
 [node name="TakeDamageAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_y3g8c")
 volume_db = -11.0
+
+[node name="JumpAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_kkfpk")
+volume_db = -8.748
 
 [connection signal="hit" from="LeftBoot" to="." method="take_damage"]
 [connection signal="hit" from="LeftBoot" to="TakeDamageAudioPlayer" method="play" unbinds=1]
