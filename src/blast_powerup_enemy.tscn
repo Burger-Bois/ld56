@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cv6q1tx4h8a25"]
+[gd_scene load_steps=7 format=3 uid="uid://pbcktr38b6gm"]
 
-[ext_resource type="Script" path="res://src/following_enemy.gd" id="1_ui72c"]
-[ext_resource type="Texture2D" uid="uid://c3ac58bgb4fex" path="res://assets/spider.png" id="2_gosk8"]
-[ext_resource type="Texture2D" uid="uid://bbbh5qfpoq3uo" path="res://assets/spider 2.png" id="3_mno0j"]
+[ext_resource type="Script" path="res://src/blast_powerup_enemy.gd" id="1_2knjm"]
+[ext_resource type="Texture2D" uid="uid://b85pe5bhejwoa" path="res://assets/speed-powerup-bug1.png" id="2_d4hvg"]
+[ext_resource type="Texture2D" uid="uid://b23f7evv84bd6" path="res://assets/speed-powerup-bug2.png" id="3_ko13i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbvrk"]
 size = Vector2(32, 32)
@@ -10,25 +10,25 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s66oi"]
 size = Vector2(32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_y6pag"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_p4wfe"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_gosk8")
+"texture": ExtResource("2_d4hvg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_mno0j")
+"texture": ExtResource("3_ko13i")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="FollowingEnemy" type="CharacterBody2D"]
+[node name="BlastPowerUpEnemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
 motion_mode = 1
-script = ExtResource("1_ui72c")
+script = ExtResource("1_2knjm")
 metadata/_edit_vertical_guides_ = [-90.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -45,9 +45,9 @@ shape = SubResource("RectangleShape2D_s66oi")
 autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(0.316483, 0.145569, 0.41011, 1)
 rotation = 1.57079
-sprite_frames = SubResource("SpriteFrames_y6pag")
+sprite_frames = SubResource("SpriteFrames_p4wfe")
 autoplay = "default"
 
 [node name="BlastTimer" type="Timer" parent="."]

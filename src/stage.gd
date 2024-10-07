@@ -11,6 +11,7 @@ signal finished(state: FinishState)
 @export var following_enemy_scene: PackedScene
 
 @export var speed_powerup_scene: PackedScene
+@export var blast_powerup_scene: PackedScene
 
 
 enum FinishState {GAME_OVER}
@@ -48,17 +49,19 @@ func spawn():
 		if enemy is FollowingEnemy:
 			enemy._player = player
 		add_child(enemy)
-		
+		#
 func get_enemy_type():
 	var enemy_select = randi_range(1, 100)
 	if enemy_select <= 20:
 		return linear_enemy_scene
 	elif enemy_select <= 55:
 		return random_enemy_scene
-	elif enemy_select <= 85:
+	elif enemy_select <= 84:
 		return spikey_enemy_scene
-	elif enemy_select <= 90:
+	elif enemy_select <= 88:
 		return speed_powerup_scene
+	elif enemy_select <= 90:
+		return blast_powerup_scene
 	else:
 		return following_enemy_scene
 

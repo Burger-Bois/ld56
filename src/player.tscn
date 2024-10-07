@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://j82506cb8570"]
+[gd_scene load_steps=28 format=3 uid="uid://j82506cb8570"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_4c8sp"]
 [ext_resource type="Texture2D" uid="uid://c3ie1xxbu3ab2" path="res://assets/shockwave.png" id="2_454rn"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://be0kd1p6aw1eu" path="res://assets/ouch/ouch8.mp3" id="12_pefyr"]
 [ext_resource type="AudioStream" uid="uid://ge3wry0celmt" path="res://assets/ouch/ouch9.mp3" id="13_fdhwd"]
 [ext_resource type="AudioStream" uid="uid://n3o0g3x2bty7" path="res://assets/jump/jump1.mp3" id="17_mol4s"]
+[ext_resource type="Script" path="res://src/blast_powerup.gd" id="18_3famf"]
 [ext_resource type="AudioStream" uid="uid://c2awonmkocmgn" path="res://assets/jump/jump2.mp3" id="18_pttoo"]
 [ext_resource type="AudioStream" uid="uid://5y1ieh73jgdo" path="res://assets/jump/jump3.mp3" id="19_nyudl"]
 
@@ -108,6 +109,8 @@ _data = {
 "shockwave": SubResource("Animation_i5ntu")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8e5hp"]
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 0
@@ -156,6 +159,18 @@ libraries = {
 
 [node name="SpeedPowerupTimer" type="Timer" parent="."]
 wait_time = 10.0
+
+[node name="BlastPowerup" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("18_3famf")
+
+[node name="BlastPowerupRadius" type="CollisionShape2D" parent="BlastPowerup"]
+position = Vector2(0, 10)
+rotation = 1.5708
+scale = Vector2(12, 12)
+shape = SubResource("CapsuleShape2D_8e5hp")
+debug_color = Color(0.609, 0.487, 0.625, 0.108)
 
 [connection signal="hit" from="LeftBoot" to="." method="take_damage"]
 [connection signal="hit" from="RightBoot" to="." method="take_damage"]

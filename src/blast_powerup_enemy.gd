@@ -1,8 +1,9 @@
-extends Enemy
+class_name BlastPowerupEnemy extends Enemy
 
 func _ready() -> void:
-	speed = 80
-	damage = 15
+	speed = 50
+	damage = 5
+	health_bonus = 0
 
 func _physics_process(delta: float) -> void:
 	if _is_pushed:

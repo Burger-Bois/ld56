@@ -116,8 +116,11 @@ func on_enemy_hit(enemy: Enemy):
 	$BugDeathAudioPlayer.play()
 	if enemy is SpikeyEnemy:
 		$TakeDamageAudioPlayer.play()
-	if enemy is SpeedPowerUpEnemy:
+	elif enemy is SpeedPowerUpEnemy:
 		start_speed_powerup()
+	elif enemy is BlastPowerupEnemy:
+		$BlastPowerup._on_blast_powerup_obtained()
+
 
 
 func set_health(health: int):

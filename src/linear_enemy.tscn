@@ -47,4 +47,9 @@ sprite_frames = SubResource("SpriteFrames_q8qp5")
 autoplay = "default"
 frame_progress = 0.122302
 
+[node name="BlastTimer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
 [connection signal="area_entered" from="Hitbox" to="." method="remove" unbinds=1]
+[connection signal="timeout" from="BlastTimer" to="." method="_on_blast_timer_timeout"]

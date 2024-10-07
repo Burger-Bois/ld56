@@ -50,5 +50,10 @@ rotation = 1.57079
 sprite_frames = SubResource("SpriteFrames_p4wfe")
 autoplay = "default"
 
+[node name="BlastTimer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
 [connection signal="area_entered" from="Hitbox" to="." method="remove" unbinds=1]
 [connection signal="timeout" from="ChangeDirectionTimer" to="." method="_on_change_direction_timer_timeout"]
+[connection signal="timeout" from="BlastTimer" to="." method="_on_blast_timer_timeout"]
