@@ -1,10 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://desq18qgx2qvm"]
+[gd_scene load_steps=16 format=3 uid="uid://desq18qgx2qvm"]
 
 [ext_resource type="Script" path="res://src/ui.gd" id="1_2uf0a"]
 [ext_resource type="Texture2D" uid="uid://cjt0y4xany7pd" path="res://assets/Untitled.png" id="1_fyys5"]
 [ext_resource type="FontFile" uid="uid://xmkia5no5rje" path="res://assets/fonts/PeaberryBase.ttf" id="1_xkc3i"]
-[ext_resource type="Texture2D" uid="uid://djh8y3euhfkwd" path="res://assets/start.png" id="2_nqpl4"]
-[ext_resource type="Texture2D" uid="uid://dx3nwppnbjk0y" path="res://assets/title.png" id="4_qel5u"]
+[ext_resource type="Texture2D" uid="uid://b6l5af6hve5vg" path="res://assets/stompy-start-button.png" id="4_bdbh1"]
+[ext_resource type="Texture2D" uid="uid://cfuseorijijfx" path="res://assets/stompytitle-glow.png" id="5_nou5i"]
 [ext_resource type="PackedScene" uid="uid://cjluo6hcxj3aj" path="res://src/music.tscn" id="5_rtldg"]
 [ext_resource type="Texture2D" uid="uid://bvew24qjwmrgh" path="res://assets/game over.png" id="6_lj3qr"]
 [ext_resource type="AudioStream" uid="uid://8rvqi1gpj17p" path="res://assets/music/gameOver.wav" id="7_5y3sd"]
@@ -13,6 +13,8 @@
 
 [sub_resource type="Theme" id="Theme_es22y"]
 default_font = ExtResource("1_xkc3i")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ovch"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecmhi"]
 bg_color = Color(0, 0, 0, 1)
@@ -48,35 +50,43 @@ offset_right = 640.0
 offset_bottom = 360.0
 
 [node name="Untitled" type="Sprite2D" parent="MainMenu"]
+modulate = Color(0.0430392, 0.0430392, 0.0430392, 1)
 position = Vector2(320, 180)
 texture = ExtResource("1_fyys5")
 
 [node name="Button" type="Button" parent="MainMenu"]
 layout_mode = 0
-offset_left = 57.0
-offset_top = 245.0
-offset_right = 165.0
-offset_bottom = 303.0
-icon = ExtResource("2_nqpl4")
+offset_left = 143.0
+offset_top = 157.0
+offset_right = 465.0
+offset_bottom = 325.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_hover_color = Color(6.97896e-07, 0.374533, 0.266181, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_constants/icon_max_width = 0
+theme_override_font_sizes/font_size = 62
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6ovch")
+text = "Start"
+icon = ExtResource("4_bdbh1")
 flat = true
+autowrap_mode = 2
+icon_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="MainMenu"]
-position = Vector2(312, 105)
-texture = ExtResource("4_qel5u")
+position = Vector2(224, 82)
+texture = ExtResource("5_nou5i")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MainMenu"]
 layout_mode = 0
-offset_left = 463.0
-offset_top = 7.0
-offset_right = 639.0
-offset_bottom = 201.0
-theme_override_colors/table_border = Color(0, 0, 0, 1)
-theme_override_colors/table_even_row_bg = Color(0, 0, 0, 1)
-theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
-theme_override_colors/selection_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+offset_left = 454.0
+offset_top = 33.0
+offset_right = 630.0
+offset_bottom = 227.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
 bbcode_enabled = true
 text = "How to play:
 W to move forward
@@ -87,27 +97,21 @@ Space to jump"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="MainMenu"]
 layout_mode = 0
-offset_left = 183.0
-offset_top = 231.0
-offset_right = 637.0
-offset_bottom = 356.0
-theme_override_colors/table_border = Color(0, 0, 0, 1)
-theme_override_colors/table_even_row_bg = Color(0, 0, 0, 1)
-theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
-theme_override_colors/selection_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-text = "Credits:
-John - Programming
-Zoe - Programming
-James - Music, Design, Additional Programming
-Toby - Voice acting
-Tom - Audio Mixing"
+offset_left = -15.0
+offset_top = 293.0
+offset_right = 654.0
+offset_bottom = 431.0
+theme_override_colors/default_color = Color(0.237539, 0.237539, 0.237539, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]
+John - Programming      Zoe - Programming      James - Music, Programming        Toby - Voice acting      Tom - Audio Mixing
+Font - Peaberry Pixel <https://emhuo.itch.io/peaberry-pixel-font>"
 
 [node name="AudioStreamPlayer" parent="MainMenu" instance=ExtResource("5_rtldg")]
 
 [node name="GameOverScreen" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 643.0
 offset_bottom = 365.0
