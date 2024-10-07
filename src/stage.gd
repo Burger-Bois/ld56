@@ -3,9 +3,12 @@ class_name Stage extends Node2D
 
 signal finished(state: FinishState)
 
+@export var player: Player
+
 @export var linear_enemy_scene: PackedScene
 @export var random_enemy_scene: PackedScene
 @export var spikey_enemy_scene: PackedScene
+@export var following_enemy_scene: PackedScene
 
 
 enum FinishState {GAME_OVER}
@@ -16,7 +19,6 @@ var _difficulty = 1
 var max_enemies
 var enemy_count
 
-var enemies
 var rng = RandomNumberGenerator.new()
 
 
@@ -24,7 +26,6 @@ var rng = RandomNumberGenerator.new()
 func _ready() -> void:
 	max_enemies = DEFAULT_ENEMIES
 	$DifficultyTimer.start()
-	enemies = [linear_enemy_scene, random_enemy_scene, spikey_enemy_scene]
 	enemy_count = count_enemies()
 	$AudioStreamPlayer.play()
 
@@ -36,14 +37,27 @@ func _process(delta: float) -> void:
 
 func spawn():
 	if enemy_count < max_enemies:
-		var enemy_select = randi_range(0, enemies.size() - 1)
-		var enemy := enemies[enemy_select].instantiate() as Enemy
+		var enemy := get_enemy_type().instantiate() as Enemy
 		var enemy_spawn_location = $EnemyPath/EnemySpawnLocation
 		enemy_spawn_location.progress_ratio = randf()
 		var direction = enemy_spawn_location.rotation + PI / 2
 		enemy.direction = direction
 		enemy.position = enemy_spawn_location.position
+		if enemy is FollowingEnemy:
+			enemy._player = player
 		add_child(enemy)
+		
+func get_enemy_type():
+	var enemy_select = randi_range(1, 100)
+	if enemy_select <= 25:
+		return linear_enemy_scene
+	elif enemy_select <= 60:
+		return random_enemy_scene
+	elif enemy_select <= 90:
+		return spikey_enemy_scene
+	else:
+		return following_enemy_scene
+
 
 func count_enemies():
 	var enemies = 0

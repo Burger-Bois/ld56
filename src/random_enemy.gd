@@ -9,4 +9,4 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_change_direction_timer_timeout() -> void:
-		direction += randf_range(-PI / 4, PI / 4)
+	direction += randf_range(-PI / 4, PI / 4)
