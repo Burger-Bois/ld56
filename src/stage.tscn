@@ -106,7 +106,7 @@ limit_right = 1146
 limit_bottom = 1146
 
 [node name="EnemyTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.1
 autostart = true
 
 [node name="EnemyPath" type="Path2D" parent="."]
