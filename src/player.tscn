@@ -114,8 +114,6 @@ collision_layer = 0
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_4c8sp")
-turn_speed = null
-jump_speed = null
 
 [node name="Shockwave" type="Sprite2D" parent="."]
 position = Vector2(0, 10)
@@ -156,7 +154,11 @@ libraries = {
 "shockwave": SubResource("AnimationLibrary_73hsd")
 }
 
+[node name="SpeedPowerupTimer" type="Timer" parent="."]
+wait_time = 10.0
+
 [connection signal="hit" from="LeftBoot" to="." method="take_damage"]
 [connection signal="hit" from="RightBoot" to="." method="take_damage"]
 [connection signal="timeout" from="DazeTimer" to="." method="end_jump"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="set" binds= ["_invincible", false]]
+[connection signal="timeout" from="SpeedPowerupTimer" to="." method="_on_speed_powerup_timer_timeout"]

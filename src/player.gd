@@ -17,6 +17,7 @@ enum State {IDLE, JUMPING, DAZED}
 var _current_pivot: Node2D
 var _health
 var _default_turn_speed
+var _default_jump_speed
 
 var _state: State = State.IDLE
 
@@ -25,6 +26,7 @@ var _invincible := false
 
 func _ready():
 	_default_turn_speed = turn_speed
+	_default_jump_speed = jump_speed
 	set_health(100)
 	SignalBus.enemy_hit.connect(on_enemy_hit)
 	_current_pivot = _left_boot
@@ -110,7 +112,7 @@ func on_enemy_hit(enemy: Enemy):
 	if enemy is SpikeyEnemy:
 		$TakeDamageAudioPlayer.play()
 	if enemy is SpeedPowerUpEnemy:
-		turn_speed = _default_turn_speed * 2
+		start_speed_powerup()
 
 
 func set_health(health: int):
@@ -135,6 +137,17 @@ func jump():
 	_right_boot.state = Boot.State.JUMPING
 	$JumpAudioPlayer.play()
 	_left_boot.jump_finished.connect(_jump_finished)
+	
+func start_speed_powerup():
+	turn_speed = _default_turn_speed * 1.75
+	jump_speed = _default_jump_speed * 1.5
+	$SpeedPowerupTimer.start()
+
+	
+func end_speed_powerup():
+	turn_speed = _default_turn_speed
+	jump_speed = _default_jump_speed
+	$SpeedPowerupTimer.stop()
 
 
 func _jump_finished():
@@ -146,3 +159,7 @@ func _jump_finished():
 
 func end_jump():
 	_state = State.IDLE
+
+
+func _on_speed_powerup_timer_timeout() -> void:
+	end_speed_powerup()

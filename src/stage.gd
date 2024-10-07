@@ -55,7 +55,7 @@ func get_enemy_type():
 		return linear_enemy_scene
 	elif enemy_select <= 55:
 		return random_enemy_scene
-	elif enemy_select <= 87:
+	elif enemy_select <= 85:
 		return spikey_enemy_scene
 	elif enemy_select <= 90:
 		return speed_powerup_scene
