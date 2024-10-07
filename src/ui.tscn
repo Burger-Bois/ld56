@@ -106,7 +106,8 @@ W to move forward
 S to move backwards
 A to lift right foot
 D to lift left foot
-Space to jump"
+Space to jump
+ESC to pause"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="MainMenu"]
 layout_mode = 0
